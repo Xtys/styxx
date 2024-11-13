@@ -545,7 +545,7 @@ Works
 
 
 .thumb {
-  margin: 5px 10px; /* Reduced vertical margin to make rows closer */
+    margin: 2px 5px; /* Reduced vertical margin to make rows closer */
 }
 
 .og-grid li > a,
