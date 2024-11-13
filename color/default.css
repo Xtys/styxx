@@ -5,7 +5,7 @@ body {
 
 /* Section Backgrounds */
 #secret, #intro, #install, #parallax2 {
-  background-color: #1A1A1A; /* Dark grey background for sections */
+  background-color: #2b2633; /* Dark grey background for sections */
   color: #FFFFFF; /* White text for readability */
 }
 
