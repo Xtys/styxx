@@ -128,42 +128,65 @@
 
 
     <div class="character-gallery">
-      <!-- Character 1: Mysterious Heroine X -->
-      <div class="character-item" onclick="toggleTab('tab1')">
+      <!-- Character 1 -->
+      <div class="character-item" onclick="toggleMod('mod1')">
         <img src="pic/mhx.png" alt="Mysterious Heroine X" class="character-image">
         <div class="titleText">MHX 謎のヒロインX</div>
-        <div id="tab1" class="character-content">
-        <div class="video-wrapper">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/example1" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <p>This mod features the character Mysterious Heroine X with unique animations and effects.</p>
-        <div class="character-extra-image">MHX Extra</div>
+        <div id="mod1" class="character-content">
+          <div class="expanded-content">
+            <div class="mod-video">
+              <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/example1" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="mod-image">
+              <img src="pic/mhx-extra.jpg" alt="MHX Extra">
+            </div>
+          </div>
+          <p>This mod features the character Mysterious Heroine X with unique animations and effects.</p>
         </div>
       </div>
 
-      <!-- Character 2: Velvet -->
-      <div class="character-item" onclick="toggleTab('tab2')">
-        <img src="pic/velvet.png" alt="Velvet" class="character-image">
+      <!-- Character 2 valvet -->
+      <div class="character-item" onclick="toggleMod('mod1')">
+        <img src="pic/mhx.png" alt="Velvet" class="character-image">
         <div class="titleText">Velvet ベルベット</div>
-        <div id="tab2" class="character-content">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/example2" frameborder="0" allowfullscreen></iframe>
+        <div id="mod1" class="character-content">
+          <div class="expanded-content">
+            <div class="mod-video">
+              <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/example2" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="mod-image">
+              <img src="pic/velvet-extra.jpg" alt="Velvet Extra">
+            </div>
+          </div>
           <p>Velvet mod enhances your Dota 2 experience with beautifully designed character textures.</p>
-          <img src="pic/velvet-extra.jpg" alt="Velvet Extra" class="character-extra-image">
         </div>
       </div>
 
       <!-- Character 3: Oda Nobunaga -->
-      <div class="character-item" onclick="toggleTab('tab3')">
+      <div class="character-item" onclick="toggleMod('mod1')">
         <img src="pic/nobunaga.png" alt="Oda Nobunaga" class="character-image">
         <div class="titleText">Oda Nobunaga 織田信長</div>
-        <div id="tab3" class="character-content">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/example3" frameborder="0" allowfullscreen></iframe>
-          <p>Play as the legendary Oda Nobunaga with this unique Dota 2 mod.</p>
-          <img src="pic/nobunaga-extra.jpg" alt="Oda Nobunaga Extra" class="character-extra-image">
+        <div id="mod1" class="character-content">
+          <div class="expanded-content">
+            <div class="mod-video">
+              <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/example3" frameborder="0" allowfullscreen></iframe>
+              </div>
+            </div>
+            <div class="mod-image">
+              <img src="pic/nobunaga-extra.jpg" alt="Oda Nobunaga Extra">
+            </div>
+          </div>
+          <p>legendary Oda Nobunaga join the battles.</p>
         </div>
       </div>
+    
+      <!-- Add more character items here as needed, following the same structure -->
     </div>
-  </div>
 </section>
 
 <!-- Custom CSS for Enhanced Gallery -->
@@ -173,7 +196,9 @@
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
+    margin-top: 20px;
   }
+  
   .character-item {
     cursor: pointer;
     width: 300px;
@@ -181,19 +206,19 @@
     position: relative;
     border: 1px solid #ccc;
     border-radius: 10px;
-    margin-bottom: 20px;
     overflow: hidden;
+    transition: width 0.3s ease-in-out;
   }
+  
+  .character-item.expanded {
+    width: 100%; /* Expand to full gallery width */
+  }
+  
   .character-image {
     width: 100%;
     border-bottom: 1px solid #ddd;
   }
-  .titleText {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-  }
+  
   .character-content {
     display: none;
     padding: 20px;
@@ -203,11 +228,25 @@
     border-radius: 0 0 10px 10px;
   }
   
-  /* Wrapper to make the iframe responsive */
+  .expanded-content {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .mod-video {
+    flex: 2;
+  }
+  
+  .mod-image {
+    flex: 1;
+  }
+  
   .video-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Aspect ratio of 16:9 */
+    padding-bottom: 56.25%; /* Aspect ratio 16:9 */
     height: 0;
     overflow: hidden;
   }
@@ -219,11 +258,16 @@
     width: 100%;
     height: 100%;
   }
-
-  .character-extra-image {
-    width: 100%;
-    margin-top: 15px;
-    border-radius: 5px;
+  
+  @media (max-width: 768px) {
+    .character-item.expanded {
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .expanded-content {
+      flex-direction: column;
+    }
   }
 </style>
 
