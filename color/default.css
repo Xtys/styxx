@@ -1,3 +1,8 @@
+body {
+  background-color: #121212; /* Dark grey background for the entire page */
+  color: #FFFFFF; /* White text for readability */
+}
+
 a, a:hover {
   color: #CCCCCC;
 }
