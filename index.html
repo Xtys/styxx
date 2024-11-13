@@ -126,6 +126,15 @@
       <p style="font-size:120%;">Click on a character to see more details, including videos, images, and descriptions.</p>
     </div>
 
+    <div id="tab1" class="character-content">
+      <div class="video-wrapper">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/example1" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <p>This mod features the character Mysterious Heroine X with unique animations and effects.</p>
+      <div class="character-extra-image">MHX Extra</div>
+    </div>
+
+
     <div class="character-gallery">
       <!-- Character 1: Mysterious Heroine X -->
       <div class="character-item" onclick="toggleTab('tab1')">
@@ -199,6 +208,24 @@
     margin-top: 10px;
     border-radius: 0 0 10px 10px;
   }
+  
+  /* Wrapper to make the iframe responsive */
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Aspect ratio of 16:9 */
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .character-extra-image {
     width: 100%;
     margin-top: 15px;
