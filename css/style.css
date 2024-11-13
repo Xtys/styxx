@@ -542,13 +542,6 @@ Works
     padding: 0 !important; /* Remove any default padding that might be affecting spacing */
 }
 
-
-/* Target the row to reduce default margin or padding */
-.row {
-    margin-top: 0 !important; /* Set margin to 0 to minimize vertical spacing */
-    margin-bottom: 0 !important;
-}
-
 /* Target the thumbnail class specifically */
 .thumb {
     margin-bottom: 5px !important; /* Reduce bottom margin to bring items closer */
