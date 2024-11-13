@@ -9,6 +9,20 @@ body {
   color: #FFFFFF; /* White text for readability */
 }
 
+/* Section Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #FFFFFF; /* White headings for contrast */
+}
+
+/* FAQ Section */
+.section-heading h2, .heading-line, .faq-heading, h3, h4 {
+  color: #F4F4F4; /* Light grey for headings in the FAQ section */
+}
+
+p {
+  color: #D3D3D3; /* Slightly darker grey for body text to add contrast */
+}
+
 a, a:hover {
   color: #CCCCCC;
 }
