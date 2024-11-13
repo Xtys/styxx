@@ -3,6 +3,12 @@ body {
   color: #FFFFFF; /* White text for readability */
 }
 
+/* Section Backgrounds */
+#secret, #intro, #install, #parallax2 {
+  background-color: #1A1A1A; /* Dark grey background for sections */
+  color: #FFFFFF; /* White text for readability */
+}
+
 a, a:hover {
   color: #CCCCCC;
 }
