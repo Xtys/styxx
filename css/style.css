@@ -538,14 +538,14 @@ Works
 
 /* For grid items, reduce spacing between each item */
 .og-grid li {
-    margin-bottom: 5px !important; /* Decrease the bottom margin to reduce spacing */
-    padding: 0 !important; /* Remove any default padding that might be affecting spacing */
+    margin-bottom: 5px ; /* Decrease the bottom margin to reduce spacing */
+    padding: 0 ; /* Remove any default padding that might be affecting spacing */
 }
 
 /* Target the thumbnail class specifically */
 .thumb {
-    margin-bottom: 5px !important; /* Reduce bottom margin to bring items closer */
-    margin-top: 5px !important; /* Add top margin to make spacing consistent */
+    margin-bottom: 1px ; /* Reduce bottom margin to bring items closer */
+    margin-top: 1px ; /* Add top margin to make spacing consistent */
 }
 
 
