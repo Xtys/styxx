@@ -543,6 +543,11 @@ Works
 	height: 250px;
 }
 
+
+.thumb {
+  margin: 5px 10px; /* Reduced vertical margin to make rows closer */
+}
+
 .og-grid li > a,
 .og-grid li > a img {
 	border: none;
