@@ -537,17 +537,13 @@ Works
 }
 
 .og-grid li {
-	/* margin: 10px 5px 0 5px;*/
-	display: inline-block;
-	margin: 5px 5px; /* Reduce the margin to 5px both vertically and horizontally */
-	vertical-align: top;
-	height: 250px;
+  margin: 2px; /* Reduced to bring items closer vertically and horizontally */
 }
-
 
 .thumb {
-    margin: 2px 5px; /* Reduced vertical margin to make rows closer */
+  margin: 2px; /* Reduced to eliminate extra spacing */
 }
+
 
 .og-grid li > a,
 .og-grid li > a img {
