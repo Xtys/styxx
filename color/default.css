@@ -1,52 +1,43 @@
 a, a:hover {
-  color: #CCCCCC; /* Light grey for better contrast on dark background */
+  color: #F4CCCC;
 }
 
-/* Back to Top Button */
+
+/* Back to top button */
 .back-to-top {
-  background: #444444; /* Dark grey button background */
-  color: #FFFFFF; /* White text for contrast */
+  background: #F4CCCC;
+  color: #fff;
 }
+
 
 .back-to-top:focus {
-  background: #555555; /* Slightly lighter for focus indication */
-  color: #FFFFFF;
+  background: #28062B;
+  color: #fff;
 }
 
 .back-to-top:hover {
-  background: #666666; /* Even lighter shade on hover */
-  color: #FFFFFF;
+  background: #3C0451;
+  color: #fff;
 }
 
-/* Navbar */
 .navbar-default {
-  background: #1A1A1A; /* Very dark grey for a dark-themed navbar */
-  border-color: #2A2A2A; /* Slightly lighter to add separation */
+  background: #F4CCCC;
 }
 
-/* Form Control Focus */
 .form-control:focus {
-  border-color: #666666; /* Dark grey border when focused */
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5), 0 0 2px #666666;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.5), 0 0 2px #666666;
+  border-color: #F4CCCC;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px #28062B;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 2px #28062B;
 }
 
-/* Service Carousel Indicators */
 .service .carousel-indicators .active {
-  background: #666666; /* Dark grey indicator for active state */
+  background: #F4CCCC;
 }
 
-/* Button Theme */
 .btn-theme {
-  background: #333333; /* Dark background for button */
-  color: #FFFFFF; /* White text for readability */
+  background: #F4CCCC;
 }
 
-.btn-theme:hover {
-  background: #555555; /* Lighter grey for hover effect */
-  color: #FFFFFF;
-}
-
-/* Contact Widget Icon Color */
 .contact-widget i {
-  color: #CCCCCC; /* Light grey for better contrast */
+  color: #3C0451;
+}
