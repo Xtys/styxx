@@ -31,7 +31,7 @@
         </button>
 
         <!-- Logo text or image -->
-        <a class="navbar-brand" href="/"></a>
+        <a class="navbar-brand" href="index.html">後ゆめ</a>
 
       </div>
       <div class="navigation collapse navbar-collapse navbar-ex1-collapse">
@@ -58,8 +58,8 @@
               <div class="carousel-content">
                 <h2 class="animated fadeInDown">STORY</h2>
               <p style="font-size:130%;" class="animated fadeInUp">Individuals with Same Interest</p>
-               <p style="font-size:130%;" class="animated fadeInUp">Modを作るのは決して簡単なことではありません。数え切れないほどの時間と労力を費やし、多くのModderがModを作るのを止めています。</p>
-                <p style="font-size:130%;" class="animated fadeInUp">その他、「便利さ」「シンプルさ」を中心にご提案しています。</p>
+               <p style="font-size:130%;" class="animated fadeInUp">Making Mods is never easy. Countless hours & effort are spent to make a Mod and many Modders have stopped. </p>
+                <p style="font-size:130%;" class="animated fadeInUp">We offer otherwise centering on convenient and simplicity.</p>
                 
                 <a href="#secret" class="btn-get-started animated fadeInUp">More</a>
               </div>
@@ -74,11 +74,11 @@
                 <h2 class="animated fadeInDown">Battle of Anime 最後の幻想</span></h2>
                 <p style="font-size:150%;" class="animated fadeInUp">Presents </p>
               <p style="font-size:140%;" class="animated fadeInUp"> Custom fashion for DotA 2 </p>
-             <p style="font-size:130%;" class="animated fadeInUp"> キャラクターのコンテンツファイルを所有権と一緒に購入することができます。</p> 
-              <p style="font-size:150%;" class="animated fadeInUp"> パック </p>
-               <p style="font-size:130%;" class="animated fadeInUp"> Modコンテンツファイル </p>
-              <p style="font-size:130%;" class="animated fadeInUp">  推奨ソフト一覧</p>
-               <p style="font-size:130%;" class="animated fadeInUp"> Modコンテンツ取扱説明書</p>
+             <p style="font-size:130%;" class="animated fadeInUp"> Provides oppourtunity to purchase character(s) content files along with ownerships.</p> 
+              <p style="font-size:150%;" class="animated fadeInUp"> Pack: </p>
+               <p style="font-size:130%;" class="animated fadeInUp"> Mod Content Files </p>
+              <p style="font-size:130%;" class="animated fadeInUp">  Recommended Software List </p>
+               <p style="font-size:130%;" class="animated fadeInUp"> Handling Mod Content Guide</p>
               
                 <a href="#secret" class="btn-get-started animated fadeInUp">More</a>
               </div>
@@ -91,7 +91,7 @@
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2 class="animated fadeInDown">New Content Exploration</span></h2>
-                <p style="font-size:160%;" class="animated fadeInUp">"占いは、書かれた運命を正確に予言するものである。その運命を過大に飾ると誤解を招くだけである"</p>
+                <p style="font-size:160%;" class="animated fadeInUp">"Divination is about precisely foretelling one's written destiny. Over-embellishing that fate only leads to misconception."</p>
                 <a href="#secret" class="btn-get-started animated fadeInUp">More</a>
               </div>
             </div>
@@ -116,7 +116,104 @@
  
   
 
-<!-- Services2 -->
+
+<!-- Enhanced Mod Gallery with Expandable Content -->
+<section id="mod-gallery" class="home-section bg-white">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Character Mods</h2>
+      <div class="heading-line"></div>
+      <p style="font-size:120%;">Click on a character to see more details, including videos, images, and descriptions.</p>
+    </div>
+
+    <div class="character-gallery">
+      <!-- Character 1: Mysterious Heroine X -->
+      <div class="character-item" onclick="toggleTab('tab1')">
+        <img src="pic/mhx.png" alt="Mysterious Heroine X" class="character-image">
+        <div class="titleText">MHX 謎のヒロインX</div>
+        <div id="tab1" class="character-content">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/example1" frameborder="0" allowfullscreen></iframe>
+          <p>This mod features the character Mysterious Heroine X with unique animations and effects.</p>
+          <img src="pic/mhx-extra.jpg" alt="MHX Extra" class="character-extra-image">
+        </div>
+      </div>
+
+      <!-- Character 2: Velvet -->
+      <div class="character-item" onclick="toggleTab('tab2')">
+        <img src="pic/velvet.png" alt="Velvet" class="character-image">
+        <div class="titleText">Velvet ベルベット</div>
+        <div id="tab2" class="character-content">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/example2" frameborder="0" allowfullscreen></iframe>
+          <p>Velvet mod enhances your Dota 2 experience with beautifully designed character textures.</p>
+          <img src="pic/velvet-extra.jpg" alt="Velvet Extra" class="character-extra-image">
+        </div>
+      </div>
+
+      <!-- Character 3: Oda Nobunaga -->
+      <div class="character-item" onclick="toggleTab('tab3')">
+        <img src="pic/nobunaga.png" alt="Oda Nobunaga" class="character-image">
+        <div class="titleText">Oda Nobunaga 織田信長</div>
+        <div id="tab3" class="character-content">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/example3" frameborder="0" allowfullscreen></iframe>
+          <p>Play as the legendary Oda Nobunaga with this unique Dota 2 mod.</p>
+          <img src="pic/nobunaga-extra.jpg" alt="Oda Nobunaga Extra" class="character-extra-image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Custom CSS for Enhanced Gallery -->
+<style>
+  .character-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+  .character-item {
+    cursor: pointer;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .character-image {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+  }
+  .titleText {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .character-content {
+    display: none;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+    border-radius: 0 0 10px 10px;
+  }
+  .character-extra-image {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 5px;
+  }
+</style>
+
+<!-- JavaScript for Expanding Content -->
+<script>
+  function toggleTab(tabId) {
+    const content = document.getElementById(tabId);
+    content.style.display = (content.style.display === "block") ? "none" : "block";
+  }
+</script>
+
   <section id="secret" class="home-section bg-white">
     <div class="container">
       <div class="row">
@@ -124,9 +221,8 @@
           <div class="section-heading">
             <h2>Secret Shop</h2>
             <div class="heading-line"></div>
-            <p style="font-size:95%;" > (Some Showcase)</p>
-            <p style="font-size:120%;" > Mod Gallery </p>
-            <a style="font-size:130%;" href="https://afdian.net/@styxmod"  target="_blank" >Purchase Here</a>
+            <p style="font-size:120%;" >  Mod Gallery</p>
+            <a style="font-size:130%;" href="https://afdian.net/@styxmod"  target="_blank" >Purchase here</a>
          </div>
        </div>
       </div>
@@ -144,35 +240,35 @@
            </div>
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://afdian.net/p/7483d22c22c011ed8ba352540025c377"  target="_blank">
+                <a class="card-image" href="https://www.youtube.com/watch?v=ZjqFzld2v_Y&t=59s"  target="_blank">
                     <img src="pic/velvet.png" >
                      <div class="titleText"><font size="2" color="black">Velvet ベルベット</font></div>
                 </a>
            </div>
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://afdian.net/p/65ab33c222bf11ed807552540025c377"  target="_blank">
+                <a class="card-image" href="https://www.youtube.com/watch?v=7mKKXzn3knQ"  target="_blank">
                     <img src="pic/nobunaga.png" > 
                      <div class="titleText"><font size="2" color="black">Oda Nobunaga 織田信長</font></div>
                 </a>
            </div>
             
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=mp5dlBbMA4E&t=1s"  target="_blank">
+                <a class="card-image" href="pic/Sesshōin Kiara2.jpg"  target="_blank">
                     <img src="pic/sesshouin_kiara.png" >
                      <div class="titleText"><font size="2" color="black">Sesshouin Kiara 殺生院キアラ</font></div>
                 </a>
            </div>
             
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=MUa0XBsxlJo"  target="_blank">
+                <a class="card-image" href="pic/kurisu.png"  target="_blank">
                     <img src="pic/makise_kurisu.png" >
                      <div class="titleText"><font size="2" color="black">Makise Kurisu 牧瀬 紅莉栖</font></div>
                 </a>
            </div>
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=Bc6KNMoK_mY"  target="_blank">
+                <a class="card-image" href="pic/Dota 2 Anime Mods - Witch (Goblin Slayer).mp4"  target="_blank">
                     <img src="pic/witch.png" >
                      <div class="titleText"><font size="2" color="black">Witch 魔女</font></div>
                 </a>
@@ -186,14 +282,7 @@
            </div>
             
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
-                    <img src="pic/ryougishiki_saber.png" >
-                     <div class="titleText"><font size="2" color="black">Ryougi Shiki 両儀式〔セイバー〕</font></div>
-                </a>
-           </div>
-            
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://afdian.net/p/d3c989a8291311eda39f52540025c377"  target="_blank">
+                <a class="card-image" href="#"  target="_blank">
                     <img src="pic/cc.png" >
                      <div class="titleText"><font size="2" color="black">C.C シー・ツー</font></div>
                 </a>
@@ -206,76 +295,7 @@
                 </a>
            </div>
             
-           
-            
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=iWwbnmfWho0"  target="_blank">
-                    <img src="pic/tamaki ako.png" >
-                     <div class="titleText"><font size="2" color="black">Tamaki Ako アコ</font></div>
-                </a>
-           </div>
-            
-          <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=uWRq97vEABY"  target="_blank">
-                    <img src="pic/yoshino1.png" >
-                     <div class="titleText"><font size="2" color="black">Yoshino Himekawa 氷芽川 四糸乃</font></div>
-                </a>
-           </div>
-            
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
-                    <img src="pic/kochiya_sanae.png" >
-                     <div class="titleText"><font size="2" color="black">Sanae Kochiya  東風谷　早苗</font></div>
-                </a>
-           </div>
-            
-           <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=Nx9FjmfOo-Q"  target="_blank">
-                    <img src="pic/shiki_assassin.png" >
-                     <div class="titleText"><font size="2" color="black">Ryougi Shiki 両儀式〔アサシン〕</font></div>
-                </a>
-           </div>
-            
-           <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://afdian.net/item?plan_id=0e9f4bfe3a0c11ed844852540025c377"  target="_blank">
-                    <img src="pic/klee.png" >
-                     <div class="titleText"><font size="2" color="black">Klee 花玲</font></div>
-                </a>
-           </div>
-           <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="pic/brynhildr_2.png"  target="_blank">
-                    <img src="pic/brynhildr1.png" >
-                     <div class="titleText"><font size="2" color="black">Brynhildr ブリュンヒルデ</font></div>
-                </a>
-           </div>
-            
-            
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="#"  target="_blank">
-                    <img src="pic/scathach.png" >
-                     <div class="titleText"><font size="2" color="black">Scáthach ランサー</font></div>
-                </a>
-           </div>
-            
-
-              
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="pic/misono.png"  target="_blank">
-                    <img src="pic/mhx_alter.png" >
-                     <div class="titleText"><font size="2" color="black">Mysterious Heroine X (Alter) 謎のヒロインX〔オルタ〕</font></div>
-                </a>
-           </div>
-            
-
-            
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="#"  target="_blank">
-                    <img src="pic/meltryllis1.png" >
-                     <div class="titleText"><font size="2" color="black">Meltryllis メルトリリ</font></div>
-                </a>
-           </div>
-            
-              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
                 <a class="card-image" href="#"  target="_blank">
                     <img src="pic/shana.png" >
                      <div class="titleText"><font size="2" color="black">Shana シャナ</font></div>
@@ -291,11 +311,72 @@
             
             
             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://afdian.net/item?plan_id=da55ac0422c711ed82be52540025c377"  target="_blank">
+                <a class="card-image" href="#"  target="_blank">
                     <img src="pic/koishi.png" >
                      <div class="titleText"><font size="2" color="black">Koishi Komeiji 古明地 こいし</font></div>
                 </a>
            </div>
+            
+
+            
+             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/ryougishiki_saber.png" >
+                     <div class="titleText"><font size="2" color="black">Ryougi Shiki 両儀式〔セイバー〕</font></div>
+                </a>
+           </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/ryougishiki_saber_3.png" >
+                     <div class="titleText"><font size="2" color="black">Ryougi Shiki 両儀式〔セイバー〕3破</font></div>
+                </a>
+           </div>
+             
+            
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="#"  target="_blank">
+                    <img src="pic/scathach.png" >
+                     <div class="titleText"><font size="2" color="black">Scáthach ランサー</font></div>
+                </a>
+           </div>
+            
+          
+            
+            
+              
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="pic/misono.png"  target="_blank">
+                    <img src="pic/mhx_alter.png" >
+                     <div class="titleText"><font size="2" color="black">Mysterious Heroine X (Alter) 謎のヒロインX〔オルタ〕</font></div>
+                </a>
+           </div>
+            
+              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="pic/brynhildr_2.png"  target="_blank">
+                    <img src="pic/brynhildr1.png" >
+                     <div class="titleText"><font size="2" color="black">Brynhildr ブリュンヒルデ</font></div>
+                </a>
+           </div>
+            
+            
+             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="pic/"  target="_blank">
+                    <img src="pic/jacktheripper.png" >
+                     <div class="titleText"><font size="2" color="black">Jack the Ripper ジャック・ザ・リッパー</font></div>
+                </a>
+           </div>
+            
+            
+            
+            
+             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="#"  target="_blank">
+                    <img src="pic/meltryllis1.png" >
+                     <div class="titleText"><font size="2" color="black">Meltryllis メルトリリ</font></div>
+                </a>
+           </div>
+            
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
                 <a class="card-image" href="https://youtu.be/_I0OJCyTPxs"  target="_blank">
@@ -304,11 +385,43 @@
                 </a>
            </div>
             
+             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/tamaki ako.png" >
+                     <div class="titleText"><font size="2" color="black">Tamaki Ako アコ</font></div>
+                </a>
+           </div>
+            
+            
+            
+            
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="pic/murasame.png"  target="_blank">
+                    <img src="pic/murasame.jpg" >
+                     <div class="titleText"><font size="2" color="black">Murasame</font></div>
+                </a>
+           </div>
+            
 
+              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="pic/yoshino2.png"  target="_blank">
+                    <img src="pic/yoshino1.png" >
+                     <div class="titleText"><font size="2" color="black">Yoshino Himekawa 氷芽川 四糸乃</font></div>
+                </a>
+           </div>
+            
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/kochiya_sanae.jpg" >
+                     <div class="titleText"><font size="2" color="black">Sanae Kochiya  東風谷　早苗</font></div>
+                </a>
+           </div>
+            
+            
             
               <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
                 <a class="card-image" href="pic/archerartoria.png"  target="_blank">
-                    <img src="pic/artoriaarcher1.png" >
+                    <img src="pic/artoriaarcher1.jpg" >
                      <div class="titleText"><font size="2" color="black">Artoria (Archer)</font></div>
                 </a>
            </div>
@@ -329,7 +442,10 @@
                 </a>
            </div>
             
-
+            
+            
+         
+ 
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
                 <a class="card-image" href="img/works/6.jpgs"  target="_blank">
@@ -338,29 +454,52 @@
                 </a>
            </div>
             
-
+             
+            
            
+            
+           
+            
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://www.youtube.com/watch?v=Pv0h1YtklX8"  target="_blank">
-                    <img src="pic/akeno.png" >
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/Hassan-i-Sabbah.png" >
+                     <div class="titleText"><font size="2" color="black">Hundred-Faced Hassan 百貌のハサン</font></div>
+                </a>
+           </div>
+           
+          
+            
+             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/shiki_assassin.png" >
+                     <div class="titleText"><font size="2" color="black">Ryougi Shiki 両儀式〔アサシン〕</font></div>
+                </a>
+           </div>
+            
+             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/akeno.jpg" >
                      <div class="titleText"><font size="2" color="black">Akeno 姫島 朱乃</font></div>
                 </a>
            </div>
             
             
-
+            
+            
+            
+             
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="https://afdian.net/item?plan_id=da55ac0422c711ed82be52540025c377"  target="_blank">
-                    <img src="pic/elaina.png" >
-                     <div class="titleText"><font size="2" color="black">Elaina イレイナ</font></div>
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/whitelen.png" >
+                     <div class="titleText"><font size="2" color="black">White Len 白レン</font></div>
                 </a>
            </div>
             
              <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="#"  target="_blank">
-                    <img src="pic/fujino.png" >
-                     <div class="titleText"><font size="2" color="black">fujino</font></div>
+                <a class="card-image" href="img/works/6.jpgs"  target="_blank">
+                    <img src="pic/black_len.png" >
+                     <div class="titleText"><font size="2" color="black">Len レン</font></div>
                 </a>
            </div>
           
@@ -375,27 +514,6 @@
                 <a class="card-image" href="pic/altair1.png"  target="_blank">
                     <img src="pic/altair2.png" >
                      <div class="titleText"><font size="2" color="black">Altair アルタイル</font></div>
-                </a>
-           </div>
-            
-             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="#"  target="_blank">
-                    <img src="pic/izayoi_miku2.png" >
-                     <div class="titleText"><font size="2" color="black">Miku Izayoi 誘いざ宵よい 美み九く</font></div>
-                </a>
-           </div>
-            
-             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="#"  target="_blank">
-                    <img src="pic/sakura_kyouko.png" >
-                     <div class="titleText"><font size="2" color="black">Kyoko Sakura 佐仓杏子</font></div>
-                </a>
-           </div>
-            
-             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="#"  target="_blank">
-                    <img src="pic/pchan.png" >
-                     <div class="titleText"><font size="2" color="black">Platelet Chan 血小板</font></div>
                 </a>
            </div>
                        
@@ -417,7 +535,7 @@
           <div class="section-heading">
             <h2>Showcase </h2>
             <div class="heading-line"></div>
-            <p style="font-size:130%;" > Unavailable To Public | 公開不可</p>
+            <p style="font-size:130%;" >  Unavailable To Public </p>
          </div>
        </div>
       </div>
@@ -439,14 +557,6 @@
                      <div class="titleText"><font size="2" color="black">Passionlip X PinkPapa</font></div>
                 </a>
            </div>
-            
-           <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden">
-                <a class="card-image" href="pic/murasame.png"  target="_blank">
-                    <img src="pic/murasame1.png" >
-                     <div class="titleText"><font size="2" color="black">Murasame X 琪露诺</font></div>
-                </a>
-           </div> 
-           
             
             
             </ul>
@@ -481,7 +591,7 @@
           <div class="section-heading">
             <h2>FAQ</h2>
             <div class="heading-line"></div>
-            <p style="font-size:160%;">MODの使いやすさ</p>
+            <p style="font-size:160%;">EASE OF USING MODS</p>
           </div>
         </div>
       </div>
@@ -492,10 +602,9 @@
                   <div class="col-sm-12 col-md-offset-1 col-md-6">
                     <div class="wow bounceInLeft">
                       <h3>INSTALLATION GUIDE</h3>
-                      <p style="font-size:140%;" >Instructions: https://youtu.be/csakHaqdBNI </p>
+                      <p style="font-size:140%;" >Follow Instructions: https://youtu.be/csakHaqdBNI </p>
                       <h4>RISK OF GETTING VAC BAN?</h4>
                       <p style="font-size:140%;" > No. Mods provide visual effects to local machine. Online user only see original Hero. </p>
-                      <p style="font-size:140%;" >いいえ、MODはローカルマシンに視覚効果を提供します。オンラインユーザーはオリジナルのHeroを見るだけです。</p>
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-5">
