@@ -711,6 +711,28 @@
 
   <!-- Template Custom Javascript File -->
   <script src="js/custom.js"></script>
+  <script>
+  function toggleMod(modId) {
+    const allCharacterItems = document.querySelectorAll('.character-item');
+    allCharacterItems.forEach(item => {
+      const content = item.querySelector('.character-content');
+      if (content && content.id === modId) {
+        const isCurrentlyExpanded = item.classList.contains('expanded');
+        if (isCurrentlyExpanded) {
+          item.classList.remove('expanded');
+          content.style.display = 'none';
+        } else {
+          item.classList.add('expanded');
+          content.style.display = 'block';
+        }
+      } else {
+        item.classList.remove('expanded');
+        if (content) content.style.display = 'none';
+      }
+    });
+  }
+</script>
+
 
 
 
