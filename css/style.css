@@ -536,13 +536,25 @@ Works
 	width: 100%;
 }
 
+/* For grid items, reduce spacing between each item */
 .og-grid li {
-  margin: 2px; /* Reduced to bring items closer vertically and horizontally */
+    margin-bottom: 5px !important; /* Decrease the bottom margin to reduce spacing */
+    padding: 0 !important; /* Remove any default padding that might be affecting spacing */
 }
 
-.thumb {
-  margin: 2px; /* Reduced to eliminate extra spacing */
+
+/* Target the row to reduce default margin or padding */
+.row {
+    margin-top: 0 !important; /* Set margin to 0 to minimize vertical spacing */
+    margin-bottom: 0 !important;
 }
+
+/* Target the thumbnail class specifically */
+.thumb {
+    margin-bottom: 5px !important; /* Reduce bottom margin to bring items closer */
+    margin-top: 5px !important; /* Add top margin to make spacing consistent */
+}
+
 
 .og-grid li > a,
 .og-grid li > a img {
