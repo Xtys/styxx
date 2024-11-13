@@ -2,6 +2,10 @@ a, a:hover {
   color: #CCCCCC;
 }
 
+body {
+  background-color: #121212; /* Dark grey background for the entire page */
+  color: #FFFFFF; /* White text for readability */
+}
 
 /* Back to top button */
 .back-to-top {
