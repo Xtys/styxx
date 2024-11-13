@@ -114,133 +114,84 @@
   
 
 
-<!-- Enhanced Mod Gallery with Expandable Content -->
-<section id="mod-gallery" class="home-section bg-white">
-  <div class="container">
-    <div class="section-heading">
-      <h2>Character Mods</h2>
-      <div class="heading-line"></div>
-      <p style="font-size:120%;">Click on a character to see more details.</p>
+<div class="mod-gallery">
+  <!-- Character Card 1 -->
+  <div class="mod-card" onclick="toggleCard(this)">
+    <div class="mod-thumbnail">
+      <img src="pic/mhx.png" alt="Mysterious Heroine X">
+      <div class="mod-title">MHX 謎のヒロインX</div>
     </div>
-
-
-    <div class="character-gallery">
-      <!-- Character 1 -->
-      <div class="character-item" onclick="toggleMod('mod1')">
-        <img src="pic/mhx.png" alt="Mysterious Heroine X" class="character-image">
-        <div class="titleText">MHX 謎のヒロインX</div>
-        <div id="mod1" class="character-content">
-          <div class="expanded-content">
-            <div class="mod-video">
-              <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/example1" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="mod-image">
-              <img src="pic/mhx-extra.jpg" alt="MHX Extra">
-            </div>
-          </div>
+    <div class="mod-details">
+      <div class="details-content">
+        <div class="mod-video">
+          <iframe src="https://www.youtube.com/embed/example1" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="mod-description">
           <p>This mod features the character Mysterious Heroine X with unique animations and effects.</p>
+          <img src="pic/mhx-extra.jpg" alt="MHX Extra" class="mod-extra-image">
         </div>
       </div>
-
-      <!-- Character 2 valvet -->
-      <div class="character-item" onclick="toggleMod('mod1')">
-        <img src="pic/velvet.png" alt="Velvet" class="character-image">
-        <div class="titleText">Velvet ベルベット</div>
-        <div id="mod1" class="character-content">
-          <div class="expanded-content">
-            <div class="mod-video">
-              <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/example2" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="mod-image">
-              <img src="pic/velvet-extra.jpg" alt="Velvet Extra">
-            </div>
-          </div>
-          <p>Velvet mod enhances your Dota 2 experience with beautifully designed character textures.</p>
-        </div>
-      </div>
-
-      <!-- Character 3: Oda Nobunaga -->
-      <div class="character-item" onclick="toggleMod('mod1')">
-        <img src="pic/nobunaga.png" alt="Oda Nobunaga" class="character-image">
-        <div class="titleText">Oda Nobunaga 織田信長</div>
-        <div id="mod1" class="character-content">
-          <div class="expanded-content">
-            <div class="mod-video">
-              <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/example3" frameborder="0" allowfullscreen></iframe>
-              </div>
-            </div>
-            <div class="mod-image">
-              <img src="pic/nobunaga-extra.jpg" alt="Oda Nobunaga Extra">
-            </div>
-          </div>
-          <p>legendary Oda Nobunaga join the battles.</p>
-        </div>
-      </div>
-    
-      <!-- Add more character items here as needed, following the same structure -->
     </div>
-</section>
+  </div>
+
+  <!-- Add more cards in the same structure for other characters -->
+</div>
+
+
 
 <!-- Custom CSS for Enhanced Gallery -->
 <style>
-  .character-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
-    margin-top: 20px;
+  .mod-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px;
   }
   
-  .character-item {
+  .mod-card {
     cursor: pointer;
-    width: 300px;
-    text-align: center;
-    position: relative;
-    border: 1px solid #ccc;
-    border-radius: 10px;
     overflow: hidden;
-    transition: width 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    position: relative;
   }
   
-  .character-item.expanded {
-    width: 100%; /* Expand to full gallery width */
-  }
-  
-  .character-image {
+  .mod-thumbnail {
+    position: relative;
     width: 100%;
-    border-bottom: 1px solid #ddd;
   }
   
-  .character-content {
-    display: none;
+  .mod-thumbnail img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .mod-title {
+    text-align: center;
+    font-weight: bold;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .mod-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+  }
+  
+  .mod-card.expanded .mod-details {
+    max-height: 800px; /* Set enough max-height to fully expand the content */
     padding: 20px;
-    background-color: #f7f7f7;
-    border-top: 1px solid #ddd;
-    margin-top: 10px;
-    border-radius: 0 0 10px 10px;
   }
   
-  .expanded-content {
+  .details-content {
     display: flex;
     gap: 20px;
-    justify-content: space-between;
     flex-wrap: wrap;
   }
   
   .mod-video {
     flex: 2;
-  }
-  
-  .mod-image {
-    flex: 1;
-  }
-  
-  .video-wrapper {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* Aspect ratio 16:9 */
@@ -248,7 +199,7 @@
     overflow: hidden;
   }
   
-  .video-wrapper iframe {
+  .mod-video iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -256,16 +207,16 @@
     height: 100%;
   }
   
-  @media (max-width: 768px) {
-    .character-item.expanded {
-      flex-direction: column;
-      width: 100%;
-    }
-  
-    .expanded-content {
-      flex-direction: column;
-    }
+  .mod-description {
+    flex: 1;
   }
+  
+  .mod-extra-image {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 5px;
+  }
+
 </style>
 
 <!-- JavaScript for Expanding Content -->
@@ -711,28 +662,18 @@
 
   <!-- Template Custom Javascript File -->
   <script src="js/custom.js"></script>
+  
   <script>
-  function toggleMod(modId) {
-    const allCharacterItems = document.querySelectorAll('.character-item');
-    allCharacterItems.forEach(item => {
-      const content = item.querySelector('.character-content');
-      if (content && content.id === modId) {
-        const isCurrentlyExpanded = item.classList.contains('expanded');
-        if (isCurrentlyExpanded) {
-          item.classList.remove('expanded');
-          content.style.display = 'none';
-        } else {
-          item.classList.add('expanded');
-          content.style.display = 'block';
-        }
-      } else {
-        item.classList.remove('expanded');
-        if (content) content.style.display = 'none';
-      }
-    });
+  function toggleCard(card) {
+    const expandedCard = document.querySelector('.mod-card.expanded');
+    // Collapse the currently expanded card if any
+    if (expandedCard && expandedCard !== card) {
+      expandedCard.classList.remove('expanded');
+    }
+    // Toggle the selected card
+    card.classList.toggle('expanded');
   }
 </script>
-
 
 
 
