@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT mod_key, COUNT(*) as download_count FROM downloads GROUP BY mod_key";
+$sql = "SELECT mod_key, download_count FROM downloads";
 $result = $conn->query($sql);
 
 $counts = array();
