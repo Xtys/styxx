@@ -67,6 +67,7 @@
     });
 
     function loadInitialCounts() {
+        // Fetch the initial download counts from the server
         fetch('get_download_counts.php')
         .then(response => response.json())
         .then(data => {
