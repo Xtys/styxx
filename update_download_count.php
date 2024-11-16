@@ -14,15 +14,16 @@ if ($conn->connect_error) {
 }
 
 // Update download count in the database
-$sql = "INSERT INTO downloads (mod_key) VALUES ('$file_key')";
-if ($conn->query($sql) === TRUE) {
-    $sql = "SELECT COUNT(*) as download_count FROM downloads WHERE mod_key = '$file_key'";
-    $result = $conn->query($sql);
-    $row = $result->fetch_assoc();
-    echo json_encode(array("downloadCount" => $row["download_count"]));
-} else {
-    echo json_encode(array("error" => "Error updating download count"));
-}
+$sql = "UPDATE downloads SET download_count = download_count + 1 WHERE mod_key = '$file_key'";
+$conn->query($sql);
+
+// Retrieve updated count
+$sql = "SELECT download_count FROM downloads WHERE mod_key = '$file_key'";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+header('Content-Type: application/json');
+echo json_encode(array("downloadCount" => $row["download_count"]));
 
 $conn->close();
 ?>
