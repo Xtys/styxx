@@ -42,6 +42,18 @@ function downloadFile(fileKey) {
         console.error('There has been a problem with your fetch operation:', error);
     });
 }
+  function updateDownloadCount(fileKey) {
+        // Send a request to update the download count on the server
+        fetch('update_download_count.php?file=' + fileKey)
+        .then(response => {
+            if (!response.ok) {
+                console.error('Failed to update download count.');
+            }
+        })
+        .catch(error => {
+            console.error('Error updating download count:', error);
+        });
+    }
 </script>
 
 </body>
