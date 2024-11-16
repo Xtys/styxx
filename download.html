@@ -46,8 +46,15 @@ function downloadFile(fileKey) {
         // Send a request to update the download count on the server
         fetch('update_download_count.php?file=' + fileKey)
         .then(response => {
-            if (!response.ok) {
+            if (response.ok) {
+                return response.json();
+            } else {
                 console.error('Failed to update download count.');
+            }
+        })
+        .then(data => {
+            if (data && data.downloadCount !== undefined) {
+                document.getElementById('counter-' + fileKey).innerText = 'Downloads: ' + data.downloadCount;
             }
         })
         .catch(error => {
