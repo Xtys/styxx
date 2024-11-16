@@ -52,37 +52,16 @@
     <div class="mod-container">
       <div class="mod-item">
         <button onclick="downloadFile('ako_tamaki_v2.3')">Ako Tamaki v2.3</button>
-        <span id="counter-ako_tamaki_v2.3" class="download-counter">Downloads: -</span>
+        <span id="counter-ako_tamaki_v2.3" class="download-counter">Downloads: 0</span>
       </div>
       <div class="mod-item">
         <button onclick="downloadFile('kurisu_makise_v1.3')">Kurisu Makise v1.3</button>
-        <span id="counter-kurisu_makise_v1.3" class="download-counter">Downloads: -</span>
+        <span id="counter-kurisu_makise_v1.3" class="download-counter">Downloads: 0</span>
       </div>
     </div>
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        loadInitialCounts();
-    });
-
-    function loadInitialCounts() {
-        // Fetch the initial download counts from the server
-        fetch('get_download_counts.php')
-        .then(response => response.json())
-        .then(data => {
-            for (const fileKey in data) {
-                const counterElement = document.getElementById('counter-' + fileKey);
-                if (counterElement) {
-                    counterElement.innerText = 'Downloads: ' + data[fileKey];
-                }
-            }
-        })
-        .catch(error => {
-            console.error('Error loading initial download counts:', error);
-        });
-    }
-
     function downloadFile(fileKey) {
         // Update download counter immediately on button click
         incrementLocalCounter(fileKey);
@@ -115,7 +94,7 @@
     function incrementLocalCounter(fileKey) {
         const counterElement = document.getElementById('counter-' + fileKey);
         if (counterElement) {
-            let currentCount = parseInt(counterElement.innerText.replace('Downloads: ', ''));
+            let currentCount = parseInt(counterElement.innerText.replace('Downloads: ', '')) || 0;
             counterElement.innerText = 'Downloads: ' + (currentCount + 1);
         }
     }
