@@ -62,6 +62,26 @@
   </div>
 
   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadInitialCounts();
+    });
+
+    function loadInitialCounts() {
+        fetch('get_download_counts.php')
+        .then(response => response.json())
+        .then(data => {
+            for (const fileKey in data) {
+                const counterElement = document.getElementById('counter-' + fileKey);
+                if (counterElement) {
+                    counterElement.innerText = 'Downloads: ' + data[fileKey];
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error loading initial download counts:', error);
+        });
+    }
+
     function downloadFile(fileKey) {
         // Update download counter immediately on button click
         incrementLocalCounter(fileKey);
