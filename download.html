@@ -63,10 +63,13 @@
 
   <script>
     function downloadFile(fileKey) {
+        // Update download counter immediately on button click
+        incrementLocalCounter(fileKey);
+        
         fetch('download.php?file=' + fileKey)
         .then(response => {
             if (response.ok) {
-                // Update download counter
+                // Update download count on the server
                 updateDownloadCount(fileKey);
                 return response.blob();
             } else {
@@ -86,6 +89,14 @@
         .catch(error => {
             console.error('There has been a problem with your fetch operation:', error);
         });
+    }
+
+    function incrementLocalCounter(fileKey) {
+        const counterElement = document.getElementById('counter-' + fileKey);
+        if (counterElement) {
+            let currentCount = parseInt(counterElement.innerText.replace('Downloads: ', ''));
+            counterElement.innerText = 'Downloads: ' + (currentCount + 1);
+        }
     }
 
     function updateDownloadCount(fileKey) {
