@@ -1,4 +1,5 @@
 <?php
+// Define the mapping of file keys to their respective Icedrive links
 $file_paths = array(
     "ako_tamaki_v2.3" => "https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u",
     "kurisu_makise_v1.3" => "https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7"
@@ -6,6 +7,7 @@ $file_paths = array(
 
 $counterFile = 'downloads_count.json';
 
+// Create the JSON file if it doesn't exist
 if (!file_exists($counterFile)) {
     file_put_contents($counterFile, '{}');
     chmod($counterFile, 0777);
@@ -13,7 +15,7 @@ if (!file_exists($counterFile)) {
 
 function updateCounter($fileKey) {
     global $counterFile;
-    $counts = json_decode(file_get_contents($counterFile), true);
+    $counts = json_decode(file_get_contents($counterFile), true) ?: [];
 
     if (isset($counts[$fileKey])) {
         $counts[$fileKey]++;
