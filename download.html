@@ -30,7 +30,7 @@
 
     function handleDownload(fileKey) {
       // Increment download counter via AJAX
-      fetch('downloadcounter.php?file=' + fileKey)
+      fetch('download.php?file=' + fileKey)
         .then(() => {
           // Once the counter is updated, download the file
           const downloadUrl = fileLinks[fileKey];
