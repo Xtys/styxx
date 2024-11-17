@@ -13,8 +13,8 @@ if (!file_exists($counterFile)) {
 
 function updateCounter($fileKey) {
     global $counterFile;
-
     $counts = json_decode(file_get_contents($counterFile), true);
+
     if (isset($counts[$fileKey])) {
         $counts[$fileKey]++;
     } else {
@@ -22,11 +22,6 @@ function updateCounter($fileKey) {
     }
 
     file_put_contents($counterFile, json_encode($counts));
-}
-
-if (isset($_GET['getCounts'])) {
-    echo file_get_contents($counterFile);
-    exit;
 }
 
 if (isset($_GET['file'])) {
