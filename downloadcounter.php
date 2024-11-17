@@ -1,4 +1,8 @@
 <?php
+// Get the file name from the query parameter
+$file_key = $_GET['file'];
+
+// Map the file key to actual file paths (can be stored in a secure location)
 $file_paths = array(
     "ako_tamaki_v2.3" => "https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u",
     "kurisu_makise_v1.3" => "https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7"
