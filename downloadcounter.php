@@ -17,15 +17,16 @@ function updateCounter($fileKey) {
     }
 
     file_put_contents($counterFile, json_encode($counts));
+    return $counts[$fileKey];
 }
 
 if (isset($_GET['file'])) {
     $fileKey = $_GET['file'];
-    updateCounter($fileKey);
-    echo "Counter updated.";
+    $newCount = updateCounter($fileKey);
+    echo json_encode(['newCount' => $newCount]);
     exit;
 }
 
 http_response_code(400);
-echo "Invalid request.";
+echo json_encode(['error' => 'Invalid request']);
 ?>
