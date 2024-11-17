@@ -21,57 +21,47 @@
   </div>
 
   <script>
-  function downloadFile(fileKey) {
-      // Step 1: Update the download counter
-      fetch('downloadcounter.php?file=' + fileKey)
-          .then(response => response.json())
-          .then(data => {
-              console.log('Download count updated:', data.newCount);
-  
-              // Step 2: Download the actual file using the original fetch + blob method
-              fetch('download.php?file=' + fileKey)
-                  .then(response => {
-                      if (!response.ok) {
-                          throw new Error('Network response was not ok.');
-                      }
-                      return response.blob();
-                  })
-                  .then(blob => {
-                      const url = window.URL.createObjectURL(blob);
-                      const a = document.createElement('a');
-                      a.style.display = 'none';
-                      a.href = url;
-                      a.download = fileKey + '.zip'; // Default file name for download
-                      document.body.appendChild(a);
-                      a.click();
-                      window.URL.revokeObjectURL(url);
-                  })
-                  .catch(error => {
-                      console.error('Error downloading the file:', error);
-                  });
-          })
-          .catch(error => {
-              console.error('Error updating counter:', error);
-          });
-  }
-  </script>
-
-
-  
-  <script>
-    // Function to fetch and display download counts
-    function fetchDownloadCounts() {
-      fetch('get_counts.php')
+function updateDownloadCounter(fileKey, callback) {
+    // Function to update the download counter
+    fetch('downloadcounter.php?file=' + fileKey)
         .then(response => response.json())
-        .then(counts => {
-          document.getElementById('count-ako').textContent = 'Downloads: ' + (counts['ako_tamaki_v2.3'] || 0);
-          document.getElementById('count-kurisu').textContent = 'Downloads: ' + (counts['kurisu_makise_v1.3'] || 0);
+        .then(data => {
+            console.log('Download count updated:', data.newCount);
+            if (callback) callback();
         })
-        .catch(error => console.error('Error fetching counts:', error));
-    }
+        .catch(error => console.error('Error updating counter:', error));
+}
 
-    // Fetch download counts on page load
-    fetchDownloadCounts();
-  </script>
+function downloadFile(fileKey) {
+    // Function to download the actual file
+    fetch('download.php?file=' + fileKey)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            return response.blob();
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = fileKey + '.zip';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error('Error downloading the file:', error);
+        });
+}
+
+// This function is triggered by the button click
+function handleDownload(fileKey) {
+    // Step 1: Update the counter, then download the file
+    updateDownloadCounter(fileKey, () => downloadFile(fileKey));
+}
+</script>
+
 </body>
 </html>
