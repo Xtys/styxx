@@ -9,13 +9,11 @@ if (!file_exists($counterFile)) {
 function updateCounter($fileKey) {
     global $counterFile;
     $counts = json_decode(file_get_contents($counterFile), true) ?? [];
-
     if (isset($counts[$fileKey])) {
         $counts[$fileKey]++;
     } else {
         $counts[$fileKey] = 1;
     }
-
     file_put_contents($counterFile, json_encode($counts));
     return $counts[$fileKey];
 }
