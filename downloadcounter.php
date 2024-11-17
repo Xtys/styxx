@@ -1,11 +1,13 @@
 <?php
-// Specify the directory where your mod files are located
-$modDirectory = 'mods/';
+// Map the file keys to their actual download URLs (external Icedrive links)
+$file_paths = array(
+    "ako_tamaki_v2.3" => "https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u",
+    "kurisu_makise_v1.3" => "https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7"
+);
 
 // Check if the 'file' parameter is present in the URL
 if (isset($_GET['file'])) {
     $fileKey = $_GET['file'];
-    $filePath = $modDirectory . $fileKey . '.zip';
 
     // Increment the download counter
     $counterFile = 'downloads_count.json';
@@ -21,21 +23,17 @@ if (isset($_GET['file'])) {
     // Save the updated counts back to the JSON file
     file_put_contents($counterFile, json_encode($counts));
 
-    // Check if the file exists before serving it
-    if (file_exists($filePath)) {
-        // Set headers to download the file
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/zip');
-        header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
-        header('Content-Length: ' . filesize($filePath));
-        readfile($filePath);
+    // Check if the file key exists in the array and redirect to the external URL
+    if (array_key_exists($fileKey, $file_paths)) {
+        $fileUrl = $file_paths[$fileKey];
+        
+        // Redirect the user to the external download URL
+        header("Location: $fileUrl");
         exit;
     } else {
-        http_response_code(404);
-        echo 'File not found.';
+        echo "Invalid file request.";
     }
 } else {
-    http_response_code(400);
-    echo 'Invalid request.';
+    echo "No file specified.";
 }
 ?>
