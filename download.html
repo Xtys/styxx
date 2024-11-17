@@ -11,12 +11,12 @@
     <h2>Available Downloads</h2>
     <div class="file-container">
       <a download class="download-button">
-        <button onclick="downloadFile('ako_tamaki_v2.3')" >Ako Tamaki v2.3</button>
+        <button onclick="handleDownload('ako_tamaki_v2.3')" >Ako Tamaki v2.3</button>
         <span id="count-ako">Downloads: 0</span>
       </a>
       <br>
        <a download class="download-button">
-      <button onclick="downloadFile('kurisu_makise_v1.3')" id="btn-kurisu">Kurisu Makise v1.3</button>
+      <button onclick="handleDownload('kurisu_makise_v1.3')" >Kurisu Makise v1.3</button>
       <span id="count-kurisu">Downloads: 0</span>
        </a>
     </div>
@@ -27,7 +27,7 @@
       // Step 1: Increment download counter
       fetch('downloadcounter.php?file=' + fileKey)
         .then(() => {
-          // Step 2: Redirect to download the file
+          // Step 2: Download the actual file
           window.location.href = 'download.php?file=' + fileKey;
         })
         .catch(error => console.error('Error updating counter:', error));
