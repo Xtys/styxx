@@ -39,5 +39,20 @@
         });
     }
   </script>
+  <script>
+  function fetchDownloadCounts() {
+    fetch('get_counts.php')
+      .then(response => response.json())
+      .then(counts => {
+        console.log(counts);
+        // Optionally update the UI with the counts
+      })
+      .catch(error => console.error('Error fetching counts:', error));
+  }
+
+  // Fetch counts on page load
+  fetchDownloadCounts();
+</script>
+
 </body>
 </html>
