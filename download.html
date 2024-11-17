@@ -21,28 +21,28 @@
   </div>
 
   <script>
-function updateDownloadCounter(fileKey, callback) {
-    fetch('downloadcounter.php?file=' + fileKey)
-        .then(response => response.json())
-        .then(data => {
-            console.log('Download count updated:', data.newCount);
-            document.getElementById(`count-${fileKey}`).textContent = 'Downloads: ' + data.newCount;
-            if (callback) callback();
-        })
-        .catch(error => console.error('Error updating counter:', error));
-}
-
-function downloadFile(fileKey) {
-    // Directly open the download URL
-    window.location.href = 'download.php?file=' + fileKey;
-}
-
-// Main function to handle download
-function handleDownload(fileKey) {
-    // Update the counter, then trigger the download
-    updateDownloadCounter(fileKey, () => downloadFile(fileKey));
-}
-</script>
+  function updateDownloadCounter(fileKey, callback) {
+      fetch('downloadcounter.php?file=' + fileKey)
+          .then(response => response.json())
+          .then(data => {
+              console.log('Download count updated:', data.newCount);
+              document.getElementById(`count-${fileKey}`).textContent = 'Downloads: ' + data.newCount;
+              if (callback) callback();
+          })
+          .catch(error => console.error('Error updating counter:', error));
+  }
+  
+  function downloadFile(fileKey) {
+      // Directly open the download URL
+      window.location.href = 'download.php?file=' + fileKey;
+  }
+  
+  // Main function to handle download
+  function handleDownload(fileKey) {
+      // Update the counter, then trigger the download
+      updateDownloadCounter(fileKey, () => downloadFile(fileKey));
+  }
+  </script>
 
 </body>
 </html>
