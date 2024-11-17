@@ -10,29 +10,29 @@
   <div class="download-page">
     <h2>Available Downloads</h2>
     <div class="file-container">
-      <a download class="download-button">
-        <button onclick="handleDownload('ako_tamaki_v2.3')" >Ako Tamaki v2.3</button>
-        <span id="count-ako">Downloads: 0</span>
-      </a>
+      <!-- Button for Ako Tamaki download -->
+      <button onclick="handleDownload('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button>
+      <span id="count-ako">Downloads: 0</span>
       <br>
-       <a download class="download-button">
-      <button onclick="handleDownload('kurisu_makise_v1.3')" >Kurisu Makise v1.3</button>
+      <!-- Button for Kurisu Makise download -->
+      <button onclick="handleDownload('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button>
       <span id="count-kurisu">Downloads: 0</span>
-       </a>
     </div>
   </div>
-  
+
   <script>
+    // Function to handle the download process
     function handleDownload(fileKey) {
-      // Step 1: Increment download counter
+      // Step 1: Increment download counter via AJAX
       fetch('downloadcounter.php?file=' + fileKey)
         .then(() => {
-          // Step 2: Download the actual file
+          // Step 2: Redirect to download.php to handle the file download
           window.location.href = 'download.php?file=' + fileKey;
         })
         .catch(error => console.error('Error updating counter:', error));
     }
 
+    // Function to fetch and display download counts
     function fetchDownloadCounts() {
       fetch('get_counts.php')
         .then(response => response.json())
