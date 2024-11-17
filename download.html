@@ -10,49 +10,31 @@
   <div class="download-page">
     <h2>Available Downloads</h2>
     <div class="file-container">
-      <button onclick="downloadFile('ako_tamaki_v2.3')">Ako Tamaki v2.3</button>
-      <button onclick="downloadFile('kurisu_makise_v1.3')">Kurisu Makise v1.3</button>
+      <button onclick="downloadFile('ako_tamaki_v2.3')" id="btn-ako">Ako Tamaki v2.3</button>
+      <span id="count-ako">Downloads: 0</span>
+      <br>
+      <button onclick="downloadFile('kurisu_makise_v1.3')" id="btn-kurisu">Kurisu Makise v1.3</button>
+      <span id="count-kurisu">Downloads: 0</span>
     </div>
   </div>
   
   <script>
     function downloadFile(fileKey) {
-      fetch('downloadcounter.php?file=' + fileKey)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok.');
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.style.display = 'none';
-          a.href = url;
-          a.download = fileKey + '.zip';
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-          console.error('There has been a problem with your fetch operation:', error);
-        });
+      window.location.href = 'downloadcounter.php?file=' + fileKey;
     }
+
+    function fetchDownloadCounts() {
+      fetch('downloadcounter.php?getCounts=1')
+        .then(response => response.json())
+        .then(counts => {
+          document.getElementById('count-ako').textContent = 'Downloads: ' + (counts['ako_tamaki_v2.3'] || 0);
+          document.getElementById('count-kurisu').textContent = 'Downloads: ' + (counts['kurisu_makise_v1.3'] || 0);
+        })
+        .catch(error => console.error('Error fetching counts:', error));
+    }
+
+    // Fetch download counts on page load
+    fetchDownloadCounts();
   </script>
-  <script>
-  function fetchDownloadCounts() {
-    fetch('get_counts.php')
-      .then(response => response.json())
-      .then(counts => {
-        console.log(counts);
-        // Optionally update the UI with the counts
-      })
-      .catch(error => console.error('Error fetching counts:', error));
-  }
-
-  // Fetch counts on page load
-  fetchDownloadCounts();
-</script>
-
 </body>
 </html>
