@@ -10,40 +10,34 @@
   <div class="download-page">
     <h2>Available Downloads</h2>
     <div class="file-container">
-      <a download class="download-button">
-        <button onclick="downloadFile('ako_tamaki_v2.3')">Ako Tamaki v2.3</button>
-      </a>
-      <a download class="download-button">
+      <button onclick="downloadFile('ako_tamaki_v2.3')">Ako Tamaki v2.3</button>
       <button onclick="downloadFile('kurisu_makise_v1.3')">Kurisu Makise v1.3</button>
-       </a>
     </div>
   </div>
   
-<script>
-function downloadFile(fileKey) {
-    fetch('download.php?file=' + fileKey)
-    .then(response => {
-        if (!response.ok) {
+  <script>
+    function downloadFile(fileKey) {
+      fetch('downloadcounter.php?file=' + fileKey)
+        .then(response => {
+          if (!response.ok) {
             throw new Error('Network response was not ok.');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = fileKey + '.zip'; // Default file name for download
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-}
-
-</script>
-
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          a.download = fileKey + '.zip';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+          console.error('There has been a problem with your fetch operation:', error);
+        });
+    }
+  </script>
 </body>
 </html>
