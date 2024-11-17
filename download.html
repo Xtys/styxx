@@ -11,27 +11,43 @@
     <h2>Available Downloads</h2>
     <div class="file-container">
       <!-- Button for Ako Tamaki download -->
-      <button onclick="handleDownload('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button>
+      <button onclick="downloadFile('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button>
       <span id="count-ako">Downloads: 0</span>
       <br>
       <!-- Button for Kurisu Makise download -->
-      <button onclick="handleDownload('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button>
+      <button onclick="downloadFile('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button>
       <span id="count-kurisu">Downloads: 0</span>
     </div>
   </div>
 
   <script>
-    // Function to handle the download process
-    function handleDownload(fileKey) {
-      // Step 1: Increment download counter via AJAX
-      fetch('downloadcounter.php?file=' + fileKey)
-        .then(() => {
-          // Step 2: Redirect to download.php to handle the file download
-          window.location.href = 'download.php?file=' + fileKey;
-        })
-        .catch(error => console.error('Error updating counter:', error));
-    }
+function downloadFile(fileKey) {
+    fetch('download.php?file=' + fileKey)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return response.blob();
+    })
+    .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = fileKey + '.zip'; // Default file name for download
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+    })
+    .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+}
 
+</script>
+
+  
+  <script>
     // Function to fetch and display download counts
     function fetchDownloadCounts() {
       fetch('get_counts.php')
