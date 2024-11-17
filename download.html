@@ -21,30 +21,41 @@
   </div>
 
   <script>
-function downloadFile(fileKey) {
-    fetch('download.php?file=' + fileKey)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = fileKey + '.zip'; // Default file name for download
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-}
+  function downloadFile(fileKey) {
+      // Step 1: Update the download counter
+      fetch('downloadcounter.php?file=' + fileKey)
+          .then(response => response.json())
+          .then(data => {
+              console.log('Download count updated:', data.newCount);
+  
+              // Step 2: Download the actual file using the original fetch + blob method
+              fetch('download.php?file=' + fileKey)
+                  .then(response => {
+                      if (!response.ok) {
+                          throw new Error('Network response was not ok.');
+                      }
+                      return response.blob();
+                  })
+                  .then(blob => {
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.style.display = 'none';
+                      a.href = url;
+                      a.download = fileKey + '.zip'; // Default file name for download
+                      document.body.appendChild(a);
+                      a.click();
+                      window.URL.revokeObjectURL(url);
+                  })
+                  .catch(error => {
+                      console.error('Error downloading the file:', error);
+                  });
+          })
+          .catch(error => {
+              console.error('Error updating counter:', error);
+          });
+  }
+  </script>
 
-</script>
 
   
   <script>
