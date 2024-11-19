@@ -54,34 +54,31 @@
     <h2>Available Mods</h2>
     <div class="file-container">
       <!-- Button for Ako Tamaki download -->
-      <button onclick="downloadFile('https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u', 'Ako_Tamaki_v2.3.zip')">Download Ako Tamaki v2.3</button>
+      <button onclick="startDownload('https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u', 'Ako_Tamaki_v2.3.zip')">Download Ako Tamaki v2.3</button>
       <!-- Button for Kurisu Makise download -->
-      <button onclick="downloadFile('https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7', 'Kurisu_Makise_v1.3.zip')">Download Kurisu Makise v1.3</button>
+      <button onclick="startDownload('https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7', 'Kurisu_Makise_v1.3.zip')">Download Kurisu Makise v1.3</button>
     </div>
   </div>
 
   <script>
-    function downloadFile(url, filename) {
-      fetch(url)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          const downloadUrl = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.style.display = 'none';
-          a.href = downloadUrl;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(downloadUrl);
-        })
-        .catch(error => {
-          console.error('There has been a problem with your download operation:', error);
-        });
+    async function startDownload(url, filename) {
+      try {
+        const response = await fetch(url, { mode: 'no-cors' });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const blob = await response.blob();
+        const downloadUrl = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = downloadUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(downloadUrl);
+      } catch (error) {
+        console.error('There has been a problem with your download operation:', error);
+      }
     }
   </script>
 </body>
