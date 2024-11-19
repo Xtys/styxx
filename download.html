@@ -11,37 +11,22 @@
     <h2>Available Mods</h2>
     <div class="file-container">
       <!-- Button for Ako Tamaki download -->
-      <button onclick="handleDownload('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button>
+      <button onclick="downloadFile('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button>
       <span id="count-ako">Downloads: 0</span>
       <br>
       <!-- Button for Kurisu Makise download -->
-      <button onclick="handleDownload('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button>
+      <button onclick="downloadFile('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button>
       <span id="count-kurisu">Downloads: 0</span>
     </div>
   </div>
 
   <script>
-  function updateDownloadCounter(fileKey, callback) {
-      fetch('downloadcounter.php?file=' + fileKey)
-          .then(response => response.json())
-          .then(data => {
-              console.log('Download count updated:', data.newCount);
-              document.getElementById(`count-${fileKey}`).textContent = 'Downloads: ' + data.newCount;
-              if (callback) callback();
-          })
-          .catch(error => console.error('Error updating counter:', error));
-  }
-  
+
   function downloadFile(fileKey) {
       // Directly open the download URL
       window.location.href = 'download.php?file=' + fileKey;
   }
-  
-  // Main function to handle download
-  function handleDownload(fileKey) {
-      // Update the counter, then trigger the download
-      updateDownloadCounter(fileKey, () => downloadFile(fileKey));
-  }
+
   </script>
 
 </body>
