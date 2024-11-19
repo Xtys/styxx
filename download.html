@@ -5,6 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="download.css">
   <title>Download Mods</title>
+  <style>
+    body {
+      background-color: #1e1e2f;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .download-page {
+      text-align: center;
+      padding: 40px;
+      background-color: #2b2b3c;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      width: 300px;
+    }
+    .download-page h2 {
+      margin-bottom: 20px;
+    }
+    .file-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .file-container button {
+      background-color: #6a4bff;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .file-container button:hover {
+      background-color: #5a3ae6;
+    }
+  </style>
 </head>
 <body>
   <div class="download-page">
@@ -12,7 +55,6 @@
     <div class="file-container">
       <!-- Button for Ako Tamaki download -->
       <button onclick="downloadFile('https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u', 'Ako_Tamaki_v2.3.zip')">Download Ako Tamaki v2.3</button>
-      <br>
       <!-- Button for Kurisu Makise download -->
       <button onclick="downloadFile('https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7', 'Kurisu_Makise_v1.3.zip')">Download Kurisu Makise v1.3</button>
     </div>
