@@ -12,20 +12,43 @@
     <div class="file-container">
       <!-- Button for Ako Tamaki download -->
       <button onclick="downloadFile('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button>
-      <span id="count-ako">Downloads: 0</span>
       <br>
       <!-- Button for Kurisu Makise download -->
       <button onclick="downloadFile('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button>
-      <span id="count-kurisu">Downloads: 0</span>
     </div>
   </div>
 
   <script>
 
-  function downloadFile(fileKey) {
-      // Directly open the download URL
-      window.location.href = 'download.php?file=' + fileKey;
-  }
+  
+    function downloadFile(fileKey) {
+        // Update download counter immediately on button click
+        incrementLocalCounter(fileKey);
+        
+        fetch('download.php?file=' + fileKey)
+        .then(response => {
+            if (response.ok) {
+                // Update download count on the server
+                updateDownloadCount(fileKey);
+                return response.blob();
+            } else {
+                throw new Error('Network response was not ok.');
+            }
+        })
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = fileKey + '.zip'; // Default file name for download
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+    }
 
   </script>
 
