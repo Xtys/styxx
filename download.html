@@ -24,17 +24,19 @@
       border-radius: 16px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
       width: 80%;
-      max-width: 1200px;
+      max-width: 800px;
       margin: 20px;
     }
     .download-page h2 {
       margin-bottom: 20px;
     }
     .file-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    .file-container li {
+      margin: 10px 0;
     }
     .file-container button {
       background-color: #6a4bff;
@@ -47,8 +49,8 @@
       cursor: pointer;
       border-radius: 8px;
       transition: background-color 0.3s ease;
-      flex: 1 1 calc(25% - 30px);
-      max-width: 200px;
+      width: 100%;
+      max-width: 400px;
     }
     .file-container button:hover {
       background-color: #5a3ae6;
@@ -58,86 +60,34 @@
 <body>
   <div class="download-page">
     <h2>Available Mods</h2>
-    <div class="file-container">
-	<!--       ako tamaki -->
-      <a>
-	<button onclick="startDownload('ako_tamaki')">Ako Tamaki v2.3</button>
-      </a>
-      <!-- Kurisu Makise -->
-      <a>
-        <button onclick="startDownload('kurisu_makise')">Kurisu Makise v1.3</button>
-      </a>
-	
-      <a>
-        <button onclick="startDownload('misaka_mikoto')">Misaka Mikoto v2.3</button>
-      </a>
-
-      <a>
-        <button onclick="startDownload('nagisa_shiota')">Nagisa Shiota v1.1</button>
-      </a>
-      <a>
-        <button onclick="startDownload('cc')">cc v1.1</button>
-      </a>
-	<a>
-        <button onclick="downloadFile('/')">blank</button>
-      </a>
-
-      <a>
-        <button onclick="downloadFile('/')">blank</button>
-      </a>
-      <a>
-        <button onclick="downloadFile('/')">blank</button>
-      </a>
-	    
-      <a>
-        <button onclick="downloadFile('/')">blank</button>
-      </a>
-
-      <a>
-        <button onclick="downloadFile('/')">blank</button>
-      </a>
-
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-	<a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-	<a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-      <a>
-        <button onclick="startDownload('/')">blank</button>
-      </a>
-    </div>
+    <ul class="file-container">
+      <!-- Button for Ako Tamaki download -->
+      <li><button onclick="startDownload('ako_tamaki_v2.3')">Download Ako Tamaki v2.3</button></li>
+      <!-- Button for Kurisu Makise download -->
+      <li><button onclick="startDownload('kurisu_makise_v1.3')">Download Kurisu Makise v1.3</button></li>
+      <!-- More buttons for additional mods -->
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+      <li><button onclick="startDownload('blank')">Blank</button></li>
+    </ul>
   </div>
+
   <script>
     const downloadLinks = {
-      'ako_tamaki': 'https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u',
-      'kurisu_makise': 'https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7',
-      'misaka_mikoto':'https://icedrive.net/s/vv8D6iu8WtYP1v5k8GitTQQGS45W',
-      'nagisa_shiota': '#'
-      'cc': '#'
-	'nezuko': '#'
-      'shana': '#'
+      'ako_tamaki_v2.3': 'https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u',
+      'kurisu_makise_v1.3': 'https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7',
+      'blank': '#'
     };
 
     function startDownload(fileKey) {
@@ -154,7 +104,5 @@
       }
     }
   </script>
-
-  
 </body>
 </html>
