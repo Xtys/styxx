@@ -19,38 +19,10 @@
   </div>
 
   <script>
-
-  
     function downloadFile(fileKey) {
-        // Update download counter immediately on button click
-        incrementLocalCounter(fileKey);
-        
-        fetch('download.php?file=' + fileKey)
-        .then(response => {
-            if (response.ok) {
-                // Update download count on the server
-                updateDownloadCount(fileKey);
-                return response.blob();
-            } else {
-                throw new Error('Network response was not ok.');
-            }
-        })
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.style.display = 'none';
-            a.href = url;
-            a.download = fileKey + '.zip'; // Default file name for download
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-            console.error('There has been a problem with your fetch operation:', error);
-        });
+        // Redirect to the backend PHP script hosted elsewhere
+        window.location.href = 'https://your-secure-server.com/download.php?file=' + fileKey;
     }
-
   </script>
-
 </body>
 </html>
