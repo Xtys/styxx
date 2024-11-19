@@ -61,11 +61,11 @@
     <div class="file-container">
       <!-- Button for Ako Tamaki download -->
       <a>
-	<button onclick="downloadFile('ako_tamaki_v2.3')">Ako Tamaki v2.3</button>
+	<button onclick="startDownload('ako_tamaki_v2.3')">Ako Tamaki v2.3</button>
       </a>
       <!-- Button for Kurisu Makise download -->
       <a>
-        <button onclick="downloadFile('Kurisu_Makise_v1.3')">Kurisu Makise v1.3</button>
+        <button onclick="startDownload('Kurisu_Makise_v1.3')">Kurisu Makise v1.3</button>
       </a>
 	
       <a>
@@ -97,65 +97,63 @@
         <button onclick="downloadFile('/')">blank</button>
       </a>
 	    
+      
+        <button onclick="startDownload('/')">blank</button>
+     
       <a>
-        <button onclick="downloadFile('/')">blank</button>
-      </a>
-      <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
 
       <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
       <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
 	<a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
 
       <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
       <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
 	<a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
 
       <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
       <a>
-        <button onclick="downloadFile('/')">blank</button>
+        <button onclick="startDownload('/')">blank</button>
       </a>
     </div>
   </div>
-<script>
-function downloadFile(fileKey) {
-    fetch('download.php?file=' + fileKey)
-    .then(response => {
-        if (!response.ok) {
-			throw new Error('Network response was not ok.');
-		}
-        return response.blob();
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
+  <script>
+    const downloadLinks = {
+      'ako_tamaki_v2.3': 'https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u',
+      'kurisu_makise_v1.3': 'https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7',
+      'blank': '#'
+    };
+
+    function startDownload(fileKey) {
+      const url = downloadLinks[fileKey];
+      if (url && url !== '#') {
         const a = document.createElement('a');
-        a.style.display = 'none';
         a.href = url;
-        a.download = fileKey + '.zip'; // Default file name for download
+        a.setAttribute('download', '');
         document.body.appendChild(a);
         a.click();
-        window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
-    });
-}
-</script>
+        document.body.removeChild(a);
+      } else {
+        alert('Invalid file selected.');
+      }
+    }
+  </script>
+
   
 </body>
 </html>
