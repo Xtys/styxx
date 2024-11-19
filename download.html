@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="download.css">
   <title>Download Mods</title>
   <style>
+    /* General body styles */
     body {
       background-color: #1e1e2f;
       color: #ffffff;
@@ -15,99 +15,98 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      overflow: auto;
+      overflow-y: auto;
     }
+
+    /* Container for the page content */
     .download-page {
       text-align: center;
-      padding: 40px;
+      padding: 20px;
       background-color: #2b2b3c;
       border-radius: 16px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-      width: 80%;
-      max-width: 800px;
+      width: 90%;
+      max-width: 700px;
       margin: 20px;
     }
+
+    /* Page title */
     .download-page h2 {
       margin-bottom: 20px;
     }
+
+    /* File container styling */
     .file-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
       list-style-type: none;
       padding: 0;
       margin: 0;
     }
-    .file-container li {
-      margin: 10px 0;
-    }
+
+    /* Button styles */
     .file-container button {
       background-color: #6a4bff;
       border: none;
       color: white;
       padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
       font-size: 16px;
-      cursor: pointer;
       border-radius: 8px;
-      transition: background-color 0.3s ease;
-      width: 100%;
-      max-width: 400px;
+      transition: all 0.3s ease;
+      flex: 1 1 calc(45% - 10px); /* Responsive grid layout */
+      max-width: 200px;
     }
+
+    /* Hover effect for buttons */
     .file-container button:hover {
       background-color: #5a3ae6;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
   <div class="download-page">
     <h2>Available Mods</h2>
-    <ul class="file-container">
-	    <a>
-      <li><button onclick="startDownload('ako_tamaki')">Ako Tamaki v2.3</button></li>
-	    </a>
-	    <a>
-      <li><button onclick="startDownload('kurisu_makise')">Kurisu Makise v1.3</button></li>
-	    </a>
-	    <a>
-      <li><button onclick="startDownload('misaka_mikoto')">Misaka Mikoto v2.3</button></li>
-	    </a>
-      <li><button onclick="startDownload('nagisa_shiota')">Nagisa Shiota v1.1</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-      <li><button onclick="startDownload('blank')">Blank</button></li>
-    </ul>
+    <!-- Container for dynamically rendered mod buttons -->
+    <ul class="file-container" id="mod-list"></ul>
   </div>
 
   <script>
-    const downloadLinks = {
-      'ako_tamaki': 'https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u',
-      'kurisu_makise': 'https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7',
-      'misaka_mikoto':'https://icedrive.net/s/vv8D6iu8WtYP1v5k8GitTQQGS45W',
-      'nagisa_shiota': '#'
-      'cc': '#'
-	'nezuko': '#'
-      'shana': '#'
-    };
+    // Array of mod data
+    const modData = [
+      { name: 'Ako Tamaki v2.3', key: 'ako_tamaki', url: 'https://icedrive.net/s/6zwYCYDyRZS8yb95YajXGfXbfx8u' },
+      { name: 'Kurisu Makise v1.3', key: 'kurisu_makise', url: 'https://icedrive.net/s/GtuPFkWDhxC3Q82kX57T9WZYt6Z7' },
+      { name: 'Misaka Mikoto v2.3', key: 'misaka_mikoto', url: 'https://icedrive.net/s/vv8D6iu8WtYP1v5k8GitTQQGS45W' },
+      { name: 'Nagisa Shiota v1.1', key: 'nagisa_shiota', url: '#' }
+    ];
 
-    function startDownload(fileKey) {
-      const url = downloadLinks[fileKey];
+    // Reference to the mod list container
+    const modList = document.getElementById('mod-list');
+
+    // Dynamically render mod buttons
+    modData.forEach(mod => {
+      const li = document.createElement('li'); // Create a list item
+      const button = document.createElement('button'); // Create a button
+      button.textContent = mod.name; // Set the button text
+      button.onclick = () => startDownload(mod.key, mod.url); // Add click event
+      li.appendChild(button); // Append the button to the list item
+      modList.appendChild(li); // Append the list item to the container
+    });
+
+    // Function to handle downloads
+    function startDownload(fileKey, url) {
       if (url && url !== '#') {
+        // Create a temporary link for the download
         const a = document.createElement('a');
         a.href = url;
         a.setAttribute('download', '');
         document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        a.click(); // Trigger the download
+        document.body.removeChild(a); // Remove the temporary link
       } else {
-        alert('Invalid file selected.');
+        alert('Download not available for this mod.'); // Alert if URL is invalid
       }
     }
   </script>
