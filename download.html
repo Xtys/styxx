@@ -12,6 +12,7 @@
       color: #ffffff;
       font-family: Arial, sans-serif;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -84,15 +85,38 @@
     #download-btn:hover {
       background-color: #37b06f;
     }
+
+    /* Donation button container */
+    .donation-container {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
+  <!-- Content container -->
   <div class="download-page">
     <h2>Available Mods</h2>
     <!-- Container for dynamically rendered mod list -->
     <ul class="file-container" id="mod-list"></ul>
     <!-- Download button -->
     <button id="download-btn">Download Selected Mods</button>
+  </div>
+
+  <!-- Donation button -->
+  <div class="donation-container">
+    <script
+      type="text/javascript"
+      src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+      data-name="bmc-button"
+      data-slug="lszy"
+      data-color="#42d58b"
+      data-emoji="☕"
+      data-font="Cookie"
+      data-text="Buy me a coffee"
+      data-outline-color="#000000"
+      data-font-color="#000000"
+      data-coffee-color="#FFDD00">
+    </script>
   </div>
 
   <script>
@@ -126,27 +150,27 @@
     });
 
     // Handle download for selected mods
-  document.getElementById('download-btn').addEventListener('click', () => {
-    const selectedMods = Array.from(
-      document.querySelectorAll('.file-container input[type="checkbox"]:checked')
-    ).map(input => input.value);
+    document.getElementById('download-btn').addEventListener('click', () => {
+      const selectedMods = Array.from(
+        document.querySelectorAll('.file-container input[type="checkbox"]:checked')
+      ).map(input => input.value);
 
-    if (selectedMods.length > 0) {
-      let delay = 0;
-      selectedMods.forEach(url => {
-        if (url && url !== '#') {
-          setTimeout(() => {
-            window.open(url, '_blank'); // Open each link with a slight delay
-          }, delay);
-          delay += 300; // Add a 300ms delay between opening tabs
-        } else {
-          alert('Download not available for some mods.');
-        }
-      });
-    } else {
-      alert('Please select at least one mod to download.');
-    }
-  });
+      if (selectedMods.length > 0) {
+        let delay = 0;
+        selectedMods.forEach(url => {
+          if (url && url !== '#') {
+            setTimeout(() => {
+              window.open(url, '_blank'); // Open each link with a slight delay
+            }, delay);
+            delay += 300; // Add a 300ms delay between opening tabs
+          } else {
+            alert('Download not available for some mods.');
+          }
+        });
+      } else {
+        alert('Please select at least one mod to download.');
+      }
+    });
   </script>
   <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="lszy" data-color="#42d58b" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
 </body>
