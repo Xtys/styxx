@@ -126,23 +126,27 @@
     });
 
     // Handle download for selected mods
-    document.getElementById('download-btn').addEventListener('click', () => {
-      const selectedMods = Array.from(
-        document.querySelectorAll('.file-container input[type="checkbox"]:checked')
-      ).map(input => input.value);
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const selectedMods = Array.from(
+      document.querySelectorAll('.file-container input[type="checkbox"]:checked')
+    ).map(input => input.value);
 
-      if (selectedMods.length > 0) {
-        selectedMods.forEach(url => {
-          if (url && url !== '#') {
-            window.open(url, '_blank'); // Open each link in a new tab
-          } else {
-            alert('Download not available for some mods.');
-          }
-        });
-      } else {
-        alert('Please select at least one mod to download.');
-      }
-    });
+    if (selectedMods.length > 0) {
+      let delay = 0;
+      selectedMods.forEach(url => {
+        if (url && url !== '#') {
+          setTimeout(() => {
+            window.open(url, '_blank'); // Open each link with a slight delay
+          }, delay);
+          delay += 300; // Add a 300ms delay between opening tabs
+        } else {
+          alert('Download not available for some mods.');
+        }
+      });
+    } else {
+      alert('Please select at least one mod to download.');
+    }
+  });
   </script>
   <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="lszy" data-color="#42d58b" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
 </body>
