@@ -47,75 +47,102 @@
       margin: 0;
     }
 
-    /* Button styles */
-    .file-container button {
+    /* Label and checkbox styles */
+    .file-container label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
       background-color: #6a4bff;
-      border: none;
-      color: white;
       padding: 10px 20px;
-      font-size: 16px;
       border-radius: 8px;
+      cursor: pointer;
       transition: all 0.3s ease;
-      flex: 1 1 calc(45% - 10px); /* Responsive grid layout */
-      max-width: 200px;
     }
 
-    /* Hover effect for buttons */
-    .file-container button:hover {
+    .file-container label:hover {
       background-color: #5a3ae6;
       transform: scale(1.05);
+    }
+
+    .file-container input[type="checkbox"] {
+      transform: scale(1.5);
+      cursor: pointer;
+    }
+
+    /* Download button styles */
+    #download-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #42d58b;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #download-btn:hover {
+      background-color: #37b06f;
     }
   </style>
 </head>
 <body>
   <div class="download-page">
     <h2>Available Mods</h2>
-    <!-- Container for dynamically rendered mod buttons -->
+    <!-- Container for dynamically rendered mod list -->
     <ul class="file-container" id="mod-list"></ul>
+    <!-- Download button -->
+    <button id="download-btn">Download Selected Mods</button>
   </div>
 
   <script>
     // Array of mod data
     const modData = [
-      { name: 'Ako Tamaki v2.3', key: 'ako_tamaki', url: 'https://icedrive.net/s/a4b29DgfxSzC4fj2681CBy5k6u9f' },
-      { name: 'Kurisu Makise v1.3', key: 'kurisu_makise', url: 'https://icedrive.net/s/3gNgWwBg9wDw8QX3A1fNCFg6iaBy' },
-      { name: 'Misaka Mikoto v2.3', key: 'misaka_mikoto', url: 'https://icedrive.net/s/Y5QaDRVVQBjSNkDQa1FBVS3TPV9b' },
-      { name: 'Nagisa Shiota v1.1', key: 'nagisa_shiota', url: 'https://icedrive.net/s/DSg2fXx1TRBfYyRVaFf6G5aDw7F8' },
-      { name: 'C.C. v1.1', key: 'cc', url: '#' },
-      { name: 'Nezuko v1.1', key: 'nezuko', url: '#' },
-      { name: 'Sesshouin Kiara v1.0', key: 'sesshouin_kiara', url: '#' },
-      { name: 'Yoshino v1.1', key: 'yoshino', url: '#' },
-      { name: 'Shana v1.1', key: 'shana', url: '#' }
+      { name: 'Ako Tamaki v2.3', url: 'https://icedrive.net/s/a4b29DgfxSzC4fj2681CBy5k6u9f' },
+      { name: 'Kurisu Makise v1.3', url: 'https://icedrive.net/s/3gNgWwBg9wDw8QX3A1fNCFg6iaBy' },
+      { name: 'Misaka Mikoto v2.3', url: 'https://icedrive.net/s/Y5QaDRVVQBjSNkDQa1FBVS3TPV9b' },
+      { name: 'Nagisa Shiota v1.1', url: 'https://icedrive.net/s/DSg2fXx1TRBfYyRVaFf6G5aDw7F8' },
+      { name: 'C.C. v1.1', url: '#' },
+      { name: 'Nezuko v1.1', url: '#' },
+      { name: 'Sesshouin Kiara v1.0', url: '#' },
+      { name: 'Yoshino v1.1', url: '#' },
+      { name: 'Shana v1.1', url: '#' }
     ];
 
     // Reference to the mod list container
     const modList = document.getElementById('mod-list');
 
-    // Dynamically render mod buttons
+    // Dynamically render mod list with checkboxes
     modData.forEach(mod => {
       const li = document.createElement('li'); // Create a list item
-      const button = document.createElement('button'); // Create a button
-      button.textContent = mod.name; // Set the button text
-      button.onclick = () => startDownload(mod.key, mod.url); // Add click event
-      li.appendChild(button); // Append the button to the list item
-      modList.appendChild(li); // Append the list item to the container
+      const label = document.createElement('label'); // Create a label for the checkbox
+      const checkbox = document.createElement('input'); // Create a checkbox
+      checkbox.type = 'checkbox'; // Set type to checkbox
+      checkbox.value = mod.url; // Set the value to the mod URL
+      label.appendChild(checkbox); // Append checkbox to label
+      label.appendChild(document.createTextNode(mod.name)); // Append mod name to label
+      li.appendChild(label); // Append label to the list item
+      modList.appendChild(li); // Append list item to the container
     });
 
-    // Function to handle downloads
-    function startDownload(fileKey, url) {
-      if (url && url !== '#') {
-        // Create a temporary link for the download
-        const a = document.createElement('a');
-        a.href = url;
-        a.setAttribute('download', '');
-        document.body.appendChild(a);
-        a.click(); // Trigger the download
-        document.body.removeChild(a); // Remove the temporary link
+    // Handle download for selected mods
+    document.getElementById('download-btn').addEventListener('click', () => {
+      const selectedMods = Array.from(
+        document.querySelectorAll('.file-container input[type="checkbox"]:checked')
+      ).map(input => input.value);
+
+      if (selectedMods.length > 0) {
+        selectedMods.forEach(url => {
+          if (url && url !== '#') {
+            window.open(url, '_blank'); // Open each link in a new tab
+          } else {
+            alert('Download not available for some mods.');
+          }
+        });
       } else {
-        alert('Download not available for this mod.'); // Alert if URL is invalid
+        alert('Please select at least one mod to download.');
       }
-    }
+    });
   </script>
-  <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="lszy" data-color="#42d58b" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#FFDD00" ></script>
 </body>
 </html>
