@@ -9,8 +9,8 @@ import shutil
 app = Flask(__name__)
 
 # Paths for VPK Creator
-VPK_CREATOR_PATH = "./VPK CREATOR"
-VPK_EXECUTABLE = os.path.normpath(os.path.join(VPK_CREATOR_PATH, "vpk.exe"))
+VPK_CREATOR_PATH = os.path.join(os.getcwd(), "VPK CREATOR")
+VPK_EXECUTABLE = os.path.join(VPK_CREATOR_PATH, "vpk.exe")
 
 @app.route('/compile-vpk', methods=['POST'])
 def compile_vpk():
