@@ -8,8 +8,9 @@ import shutil
 
 app = Flask(__name__)
 
+# Paths for VPK Creator
 VPK_CREATOR_PATH = "./VPK CREATOR"
-VPK_EXECUTABLE = os.path.join(VPK_CREATOR_PATH, "vpk.exe")
+VPK_EXECUTABLE = os.path.normpath(os.path.join(VPK_CREATOR_PATH, "vpk.exe"))
 
 @app.route('/compile-vpk', methods=['POST'])
 def compile_vpk():
@@ -46,7 +47,11 @@ def compile_vpk():
             )
 
             if result.returncode != 0:
-                return jsonify({"error": "VPK compilation failed", "details": result.stderr.decode()}), 500
+                return jsonify({
+                    "error": "VPK compilation failed",
+                    "stderr": result.stderr.decode(),
+                    "stdout": result.stdout.decode()
+                }), 500
 
             # Find the compiled VPK file
             compiled_vpk = os.path.join(VPK_CREATOR_PATH, "pak01_dir.vpk")
@@ -62,4 +67,3 @@ def compile_vpk():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
