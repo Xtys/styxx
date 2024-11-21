@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download Mods</title>
-  <link rel="icon" type="image/png" href="pic/plusminus.png"/>
   <style>
-    /* General styles */
     body {
       background-color: #1e1e2f;
       color: #ffffff;
@@ -19,8 +17,6 @@
       margin: 0;
       overflow-y: auto;
     }
-
-    /* Container for page content */
     .download-page {
       text-align: center;
       padding: 20px;
@@ -30,13 +26,9 @@
       width: 90%;
       max-width: 700px;
     }
-
-    /* Title styling */
     .download-page h2 {
       margin-bottom: 20px;
     }
-
-    /* File list styling */
     .file-container {
       display: flex;
       flex-wrap: wrap;
@@ -46,9 +38,7 @@
       padding: 0;
       margin: 0;
     }
-
-    /* Checkbox label styles */
-    .file-container label {
+    .file-item {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -58,19 +48,13 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
-    .file-container label:hover {
+    .file-item:hover {
       background-color: #5a3ae6;
-      transform: scale(1.05);
     }
-
-    /* Checkbox styling */
-    .file-container input[type="checkbox"] {
+    .file-item input[type="checkbox"] {
       transform: scale(1.5);
       cursor: pointer;
     }
-
-    /* Download button styles */
     #download-btn {
       margin-top: 20px;
       padding: 10px 20px;
@@ -79,43 +63,17 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
-
     #download-btn:hover {
       background-color: #37b06f;
-    }
-
-    /* Donation button container */
-    .donation-container {
-      margin-top: 20px;
     }
   </style>
 </head>
 <body>
   <div class="download-page">
     <h2>Available Mods</h2>
-    <!-- Mod list container -->
     <ul class="file-container" id="mod-list"></ul>
-    <!-- Download button -->
     <button id="download-btn">Download Selected Mods</button>
-  </div>
-
-  <!-- Donation button -->
-  <div class="donation-container">
-    <script
-      type="text/javascript"
-      src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-      data-name="bmc-button"
-      data-slug="lszy"
-      data-color="#42d58b"
-      data-emoji="☕"
-      data-font="Cookie"
-      data-text="Buy me a coffee"
-      data-outline-color="#000000"
-      data-font-color="#000000"
-      data-coffee-color="#FFDD00">
-    </script>
   </div>
 
   <script>
@@ -123,37 +81,52 @@
 
     // Fetch available mods and render them in the UI
     fetch(`${BACKEND_URL}/mods`)
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to fetch mods');
-        return response.json();
-      })
+      .then(response => response.json())
       .then(mods => {
         const modList = document.getElementById('mod-list');
         mods.forEach(mod => {
           const li = document.createElement('li');
-          const label = document.createElement('label');
+          li.className = 'file-item';
+
+          // Checkbox
           const checkbox = document.createElement('input');
           checkbox.type = 'checkbox';
-          checkbox.value = mod.name;
-          label.appendChild(checkbox);
-          label.appendChild(document.createTextNode(mod.name));
-          li.appendChild(label);
+          checkbox.value = mod.file;
+
+          // Mod name
+          const modName = document.createTextNode(mod.name);
+
+          li.appendChild(checkbox);
+          li.appendChild(modName);
           modList.appendChild(li);
         });
       })
       .catch(error => console.error('Error fetching mods:', error));
 
-    // Download selected mods
+    // Handle batch download
     document.getElementById('download-btn').addEventListener('click', () => {
       const selectedMods = Array.from(
         document.querySelectorAll('.file-container input[type="checkbox"]:checked')
       ).map(input => input.value);
 
       if (selectedMods.length > 0) {
-        selectedMods.forEach(mod => {
-          const downloadUrl = `${BACKEND_URL}/download?mod_name=${encodeURIComponent(mod)}`;
-          window.open(downloadUrl, '_blank');
-        });
+        fetch(`${BACKEND_URL}/download`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ mods: selectedMods })
+        })
+        .then(response => response.blob())
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'selected_mods.zip';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error('Error during download:', error));
       } else {
         alert('Please select at least one mod to download.');
       }
