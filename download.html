@@ -7,7 +7,6 @@
   <title>Download Mods</title>
   <link rel="icon" type="image/png" href="pic/plusminus.png"/>
   <style>
-    /* General styles */
     body {
       background-color: #1e1e2f;
       color: #ffffff;
@@ -20,20 +19,6 @@
       margin: 0;
       overflow-y: auto;
     }
-    #download-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4b0082; /* Dark Purple */
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      color: #ffffff; /* White text */
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    #download-btn:hover {
-      background-color: #6a0dad; /* Lighter purple on hover */
-    }
     .download-page {
       text-align: center;
       padding: 20px;
@@ -44,136 +29,53 @@
       max-width: 700px;
       margin: 20px;
     }
-    .download-page h2 {
-      margin-bottom: 20px;
-    }
-    .file-container {
+    .mod-container {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 15px;
-      justify-content: center;
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-    .file-container label {
-      display: flex;
       align-items: center;
-      gap: 10px;
-      background-color: #6a4bff;
+    }
+    .mod-button {
       padding: 10px 20px;
+      background-color: #4b0082; /* Dark Purple */
+      border: none;
       border-radius: 8px;
+      font-size: 16px;
+      color: #ffffff; /* White text */
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .file-container label:hover {
-      background-color: #5a3ae6;
-      transform: scale(1.05);
-    }
-    .file-container input[type="checkbox"] {
-      transform: scale(1.5);
-      cursor: pointer;
+    .mod-button:hover {
+      background-color: #6a0dad; /* Lighter purple on hover */
     }
   </style>
 </head>
 <body>
   <div class="download-page">
-    <h2>Available Mods</h2>
-    <ul class="file-container" id="mod-list"></ul>
-    <button id="download-btn">Download Selected Mods</button>
+    <h2>Download Mods</h2>
+    <div class="mod-container" id="mod-container"></div>
   </div>
-  <!-- Donation button -->
-  <div class="donation-container">
-    <script
-      type="text/javascript"
-      src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-      data-name="bmc-button"
-      data-slug="lszy"
-      data-color="#42d58b"
-      data-emoji="☕"
-      data-font="Cookie"
-      data-text="Buy me a coffee"
-      data-outline-color="#000000"
-      data-font-color="#000000"
-      data-coffee-color="#FFDD00">
-    </script>
-  </div>
-
-
   <script>
-    // Array of available mods (replace with dynamic fetching from your backend if needed)
-    // const modData = [
-    //     { name: 'Ako Tamaki v2.3', url: 'https://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
-    //     { name: 'Kurisu Makise v1.3', url: 'https://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
-    //     { name: 'Misaka Mikoto v2.3', url: 'https://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
-    //   { name: 'Nagisa Shiota v1.1', url: 'https://styxmod.infinityfreeapp.com/Nagisa_Shiota_v1.1.zip' }
-    //   ];
     const modData = [
-    { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
-    { name: 'Kurisu Makise v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
-    { name: 'Misaka Mikoto v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
-    { name: 'Nagisa Shiota v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa_Shiota_v1.1.zip' }
-];
+      { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
+      { name: 'Kurisu Makise v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
+      { name: 'Misaka Mikoto v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
+      { name: 'Nagisa Shiota v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa_Shiota_v1.1.zip' }
+    ];
 
-    // Render the mod list with checkboxes
-    const modList = document.getElementById('mod-list');
+    const modContainer = document.getElementById('mod-container');
+
+    // Create buttons for each mod
     modData.forEach(mod => {
-      const li = document.createElement('li');
-      const label = document.createElement('label');
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.value = mod.url;
-      label.appendChild(checkbox);
-      label.appendChild(document.createTextNode(mod.name));
-      li.appendChild(label);
-      modList.appendChild(li);
+      const button = document.createElement('button');
+      button.className = 'mod-button';
+      button.textContent = `Download ${mod.name}`;
+      button.onclick = () => {
+        // Directly download the file
+        window.location.href = mod.url;
+      };
+      modContainer.appendChild(button);
     });
-
-    // Backend URL
-    const BACKEND_URL = "https://styxx-rhll.onrender.com";
-
-    // Handle download button click
-    document.getElementById('download-btn').addEventListener('click', async () => {
-      const selectedMods = Array.from(
-        document.querySelectorAll('.file-container input[type="checkbox"]:checked')
-      ).map(input => input.value);
-
-      if (selectedMods.length === 0) {
-        alert('Please select at least one mod.');
-        return;
-      }
-
-      try {
-        console.log('Selected mods:', selectedMods); // Debug selected mods
-        const response = await fetch(`${BACKEND_URL}/download`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ mods: selectedMods })
-        });
-
-        if (response.ok) {
-          const blob = await response.blob();
-          const downloadUrl = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = downloadUrl;
-          a.download = 'selected_mods.zip';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          window.URL.revokeObjectURL(downloadUrl);
-        } else {
-          const errorMsg = await response.text();
-          console.error('Error response:', errorMsg); // Log server error
-          alert(`Error: ${errorMsg}`);
-        }
-      } catch (error) {
-        console.error('Error:', error); // Log network errors
-        alert('An error occurred while processing your request.');
-      }
-    });
-
-   
-    
   </script>
 </body>
 </html>
