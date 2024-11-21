@@ -109,7 +109,7 @@
       const li = document.createElement('li'); // List item for styling
       const button = document.createElement('button');
       button.className = 'mod-button';
-      button.textContent = `Download ${mod.name}`;
+      button.textContent = `${mod.name}`;
       button.onclick = () => {
         window.location.href = mod.url; // Directly download the mod
       };
