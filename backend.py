@@ -23,6 +23,10 @@ def compile_vpk():
         # Create a unique temporary directory for this request
         with tempfile.TemporaryDirectory() as temp_dir:
             pak_dir = os.path.join(temp_dir, "pak01_dir")
+
+            # Ensure pak01_dir is empty
+            if os.path.exists(pak_dir):
+                shutil.rmtree(pak_dir)  # Remove existing directory
             os.makedirs(pak_dir, exist_ok=True)
 
             # Download and extract each mod into the temp pak01_dir
@@ -37,7 +41,11 @@ def compile_vpk():
                     with zipfile.ZipFile(zip_path, "r") as zip_ref:
                         zip_ref.extractall(pak_dir)
                 else:
-                    return jsonify({"error": f"Failed to download {url}"}), 400
+                    return jsonify({
+                        "error": f"Failed to download {url}",
+                        "status_code": response.status_code,
+                        "reason": response.reason
+                    }), 400
 
             # Compile the VPK using vpk.exe
             result = subprocess.run(
@@ -67,3 +75,4 @@ def compile_vpk():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
