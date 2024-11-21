@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download Mods</title>
   <link rel="icon" type="image/png" href="pic/plusminus.png"/>
@@ -101,12 +102,18 @@
 
   <script>
     // Array of available mods (replace with dynamic fetching from your backend if needed)
+    // const modData = [
+    //     { name: 'Ako Tamaki v2.3', url: 'https://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
+    //     { name: 'Kurisu Makise v1.3', url: 'https://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
+    //     { name: 'Misaka Mikoto v2.3', url: 'https://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
+    //   { name: 'Nagisa Shiota v1.1', url: 'https://styxmod.infinityfreeapp.com/Nagisa_Shiota_v1.1.zip' }
+    //   ];
     const modData = [
-        { name: 'Ako Tamaki v2.3', url: 'https://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
-        { name: 'Kurisu Makise v1.3', url: 'https://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
-        { name: 'Misaka Mikoto v2.3', url: 'https://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
-      { name: 'Nagisa Shiota v1.1', url: 'https://styxmod.infinityfreeapp.com/Nagisa_Shiota_v1.1.zip' }
-      ];
+    { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
+    { name: 'Kurisu Makise v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
+    { name: 'Misaka Mikoto v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
+    { name: 'Nagisa Shiota v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa_Shiota_v1.1.zip' }
+];
 
     // Render the mod list with checkboxes
     const modList = document.getElementById('mod-list');
