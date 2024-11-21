@@ -119,12 +119,14 @@
   </div>
 
   <script>
-    // Backend URL
-    const BACKEND_URL = 'https://styxx-rhll.onrender.com'; // Replace with your Render backend URL
+    const BACKEND_URL = 'https://styxx-rhll.onrender.com';
 
     // Fetch available mods and render them in the UI
     fetch(`${BACKEND_URL}/mods`)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch mods');
+        return response.json();
+      })
       .then(mods => {
         const modList = document.getElementById('mod-list');
         mods.forEach(mod => {
