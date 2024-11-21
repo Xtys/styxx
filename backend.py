@@ -31,34 +31,37 @@ def download_mods():
     """
     Receive a list of mods, fetch their files, and return them as a ZIP archive.
     """
-    data = request.get_json()
-    selected_mods = data.get('mods', [])
+    try:
+        data = request.get_json()
+        selected_mods = data.get('mods', [])
 
-    if not selected_mods:
-        app.logger.error("No mods selected in request")
-        return jsonify({"error": "No mods selected"}), 400
+        if not selected_mods:
+            app.logger.error("No mods selected in request")
+            return jsonify({"error": "No mods selected"}), 400
 
-    # Create a ZIP file in memory
-    zip_buffer = io.BytesIO()
-    with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
-        for mod_file in selected_mods:
-            mod_url = f"{BASE_MOD_URL}/{mod_file}"  # Fix URL construction
-            try:
-                response = requests.get(mod_url, timeout=10)  # Add timeout
-                response.raise_for_status()  # Ensure the response is successful
-                zip_file.writestr(mod_file, response.content)
-            except requests.exceptions.RequestException as e:
-                app.logger.error(f"Error fetching {mod_file}: {str(e)}")
-                return jsonify({"error": f"Failed to fetch {mod_file}: {str(e)}"}), 400
+        zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(zip_buffer, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+            for mod_file in selected_mods:
+                mod_url = f"{BASE_MOD_URL}/{mod_file}"
+                try:
+                    response = requests.get(mod_url, timeout=10)
+                    response.raise_for_status()
+                    zip_file.writestr(mod_file, response.content)
+                except requests.exceptions.RequestException as e:
+                    app.logger.error(f"Error fetching {mod_file}: {str(e)}")
+                    return jsonify({"error": f"Failed to fetch {mod_file}: {str(e)}"}), 400
 
-    # Prepare the ZIP file for download
-    zip_buffer.seek(0)
-    return send_file(
-        zip_buffer,
-        mimetype='application/zip',
-        as_attachment=True,
-        download_name='mods.zip'
-    )
+        zip_buffer.seek(0)
+        return send_file(
+            zip_buffer,
+            mimetype='application/zip',
+            as_attachment=True,
+            download_name='mods.zip'
+        )
+    except Exception as e:
+        app.logger.error(f"Unexpected error: {str(e)}")
+        return jsonify({"error": "An internal server error occurred"}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
