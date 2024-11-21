@@ -1,7 +1,7 @@
 
 ***Summary***
 Initiated 2016. 
-Purpose of the project is to mod all exisiting Heroes into Characters from Anime base on the similarity in lore, skills, concept and back story of each characters. like Something you often see in warcraft3 custom maps.
+Purpose of the project is to mod all exisiting Heroes into Characters from Anime Cahracter base on the similarity in lore, skills, concept and back story. like Something you often see in warcraft3 custom maps.
 
 ***Results 2016 to 2022: (Total Heroes Dota 2 is around 124)***
 Majority (76%) of Mods have been made. Having a small group of modders, most of us are independent, collabs occasionally on some events and releases. Having said that, In 2022 I have only contributed 5% to 10% of works toward making new mods & fixing bugs. There are alot of concepts and plans which dint make it to see the day of light.
