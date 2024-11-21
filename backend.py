@@ -3,13 +3,13 @@ import os
 import subprocess
 import zipfile
 import requests
+import tempfile
+import shutil
 
 app = Flask(__name__)
 
-# Define paths
 VPK_CREATOR_PATH = "./VPK CREATOR"
 VPK_EXECUTABLE = os.path.join(VPK_CREATOR_PATH, "vpk.exe")
-PAK_DIR = os.path.join(VPK_CREATOR_PATH, "pak01_dir")
 
 @app.route('/compile-vpk', methods=['POST'])
 def compile_vpk():
@@ -19,32 +19,47 @@ def compile_vpk():
         if not mod_urls:
             return jsonify({"error": "No mods provided"}), 400
 
-        # Ensure pak01_dir is clean
-        if os.path.exists(PAK_DIR):
-            for file in os.listdir(PAK_DIR):
-                file_path = os.path.join(PAK_DIR, file)
-                if os.path.isfile(file_path):
-                    os.unlink(file_path)
+        # Create a unique temporary directory for this request
+        with tempfile.TemporaryDirectory() as temp_dir:
+            pak_dir = os.path.join(temp_dir, "pak01_dir")
+            os.makedirs(pak_dir, exist_ok=True)
 
-        # Download and extract each mod
-        for index, url in enumerate(mod_urls):
-            zip_path = os.path.join(VPK_CREATOR_PATH, f"mod{index}.zip")
-            response = requests.get(url, stream=True)
-            with open(zip_path, "wb") as f:
-                for chunk in response.iter_content(chunk_size=8192):
-                    f.write(chunk)
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(PAK_DIR)
+            # Download and extract each mod into the temp pak01_dir
+            for index, url in enumerate(mod_urls):
+                zip_path = os.path.join(temp_dir, f"mod{index}.zip")
+                response = requests.get(url, stream=True)
+                if response.status_code == 200:
+                    with open(zip_path, "wb") as f:
+                        for chunk in response.iter_content(chunk_size=8192):
+                            f.write(chunk)
+                    # Extract the zip file into pak01_dir
+                    with zipfile.ZipFile(zip_path, "r") as zip_ref:
+                        zip_ref.extractall(pak_dir)
+                else:
+                    return jsonify({"error": f"Failed to download {url}"}), 400
 
-        # Run the VPK compiler
-        subprocess.run([VPK_EXECUTABLE, "pak01_dir"], cwd=VPK_CREATOR_PATH, check=True)
+            # Compile the VPK using vpk.exe
+            result = subprocess.run(
+                [VPK_EXECUTABLE, pak_dir],
+                cwd=VPK_CREATOR_PATH,
+                capture_output=True
+            )
 
-        # Return the compiled VPK file
-        vpk_path = os.path.join(VPK_CREATOR_PATH, "pak01_dir.vpk")
-        return send_file(vpk_path, as_attachment=True)
+            if result.returncode != 0:
+                return jsonify({"error": "VPK compilation failed", "details": result.stderr.decode()}), 500
+
+            # Find the compiled VPK file
+            compiled_vpk = os.path.join(VPK_CREATOR_PATH, "pak01_dir.vpk")
+            if not os.path.exists(compiled_vpk):
+                return jsonify({"error": "Compiled VPK not found"}), 500
+
+            # Send the compiled VPK file back to the user
+            return send_file(
+                compiled_vpk,
+                as_attachment=True,
+                download_name="compiled_mods.vpk"
+            )
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
