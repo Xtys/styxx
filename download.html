@@ -104,25 +104,26 @@
       li.appendChild(label);
       modList.appendChild(li);
     });
+     // Download selected mods
+    const BACKEND_URL = "https://styxx-rhll.onrender.com"; // Replace with your actual backend URL
 
-    // Download selected mods
     document.getElementById('download-btn').addEventListener('click', async () => {
       const selectedMods = Array.from(
         document.querySelectorAll('.file-container input[type="checkbox"]:checked')
       ).map(input => input.value);
-
+    
       if (selectedMods.length === 0) {
         alert('Please select at least one mod.');
         return;
       }
-
+    
       try {
-        const response = await fetch('/download', {
+        const response = await fetch(`${BACKEND_URL}/download`, { // Use full backend URL
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ mods: selectedMods })
         });
-
+    
         if (response.ok) {
           const blob = await response.blob();
           const downloadUrl = window.URL.createObjectURL(blob);
@@ -142,6 +143,9 @@
         alert('An error occurred while processing your request.');
       }
     });
+
+   
+    
   </script>
 </body>
 </html>
