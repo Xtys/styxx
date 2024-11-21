@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Download Mods</title>
   <link rel="icon" type="image/png" href="pic/plusminus.png"/>
   <style>
+    /* General body styles */
     body {
       background-color: #1e1e2f;
       color: #ffffff;
@@ -19,6 +19,23 @@
       margin: 0;
       overflow-y: auto;
     }
+    /* Download button styles */
+    #download-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4b0082; /* Dark Purple */
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      color: #ffffff; /* White text */
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+  
+    #download-btn:hover {
+      background-color: #6a0dad; /* Lighter purple on hover */
+    }
+    /* Container for the page content */
     .download-page {
       text-align: center;
       padding: 20px;
@@ -29,32 +46,94 @@
       max-width: 700px;
       margin: 20px;
     }
-    .mod-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
+
+    /* Page title */
+    .download-page h2 {
+      margin-bottom: 20px;
     }
-    .mod-button {
+
+    /* File container styling */
+    .file-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    /* Label and checkbox styles */
+    .file-container label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #6a4bff;
       padding: 10px 20px;
-      background-color: #4b0082; /* Dark Purple */
-      border: none;
       border-radius: 8px;
-      font-size: 16px;
-      color: #ffffff; /* White text */
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .mod-button:hover {
-      background-color: #6a0dad; /* Lighter purple on hover */
+
+    .file-container label:hover {
+      background-color: #5a3ae6;
+      transform: scale(1.05);
+    }
+
+    .file-container input[type="checkbox"] {
+      transform: scale(1.5);
+      cursor: pointer;
+    }
+
+    /* Download button styles */
+    #download-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #42d58b;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    #download-btn:hover {
+      background-color: #37b06f;
+    }
+
+    /* Donation button container */
+    .donation-container {
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <!-- Content container -->
   <div class="download-page">
-    <h2>Download Mods</h2>
-    <div class="mod-container" id="mod-container"></div>
+    <h2>Available Mods</h2>
+    <!-- Container for dynamically rendered mod list -->
+    <ul class="file-container" id="mod-list"></ul>
+    <!-- Download button -->
+    <button id="download-btn">Download Selected Mods</button>
   </div>
+
+  <!-- Donation button -->
+  <div class="donation-container">
+    <script
+      type="text/javascript"
+      src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+      data-name="bmc-button"
+      data-slug="lszy"
+      data-color="#42d58b"
+      data-emoji="☕"
+      data-font="Cookie"
+      data-text="Buy me a coffee"
+      data-outline-color="#000000"
+      data-font-color="#000000"
+      data-coffee-color="#FFDD00">
+    </script>
+  </div>
+
   <script>
     const modData = [
       { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
