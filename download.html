@@ -110,9 +110,17 @@
       const button = document.createElement('button');
       button.className = 'mod-button';
       button.textContent = `${mod.name}`;
+      
+      // Event listener for downloading the mod
       button.onclick = () => {
-        window.location.href = mod.url; // Directly download the mod
+        const a = document.createElement('a'); // Create a hidden anchor tag
+        a.href = mod.url;
+        a.download = mod.name; // Suggest a filename for the download
+        document.body.appendChild(a);
+        a.click(); // Trigger the download
+        document.body.removeChild(a); // Remove the anchor tag
       };
+      
       li.appendChild(button);
       modContainer.appendChild(li);
     });
