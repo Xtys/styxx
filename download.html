@@ -95,35 +95,77 @@
   </div>
 
   <script>
-    const modData = [
-      { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
-      { name: 'Kurisu Makise v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
-      { name: 'Misaka Mikoto v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
-      { name: 'Nagisa Shiota v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa%20Shiota%20v1.1.zip' }
+    // const modData = [
+    //   { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
+    //   { name: 'Kurisu Makise v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
+    //   { name: 'Misaka Mikoto v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
+    //   { name: 'Nagisa Shiota v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa%20Shiota%20v1.1.zip' }
+    // ];
+
+    // const modContainer = document.getElementById('mod-container');
+
+    // // Dynamically create download buttons for each mod
+    // modData.forEach(mod => {
+    //   const li = document.createElement('li'); // List item for styling
+    //   const button = document.createElement('button');
+    //   button.className = 'mod-button';
+    //   button.textContent = `${mod.name}`;
+      
+    //   // Event listener for downloading the mod
+    //   button.onclick = () => {
+    //     const a = document.createElement('a'); // Create a hidden anchor tag
+    //     a.href = mod.url;
+    //     a.download = mod.name; // Suggest a filename for the download
+    //     document.body.appendChild(a);
+    //     a.click(); // Trigger the download
+    //     document.body.removeChild(a); // Remove the anchor tag
+    //   };
+      
+    //   li.appendChild(button);
+    //   modContainer.appendChild(li);
+    // });
+    
+
+        const modData = [
+      { name: 'Ako Tamaki v2.3', path: 'Ako%20Tamaki%20v2.3.zip' },
+      { name: 'Kurisu Makise v1.3', path: 'Kurisu%20Makise%20v1.3.zip' },
     ];
 
+    const token = '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';
     const modContainer = document.getElementById('mod-container');
-
-    // Dynamically create download buttons for each mod
+    
     modData.forEach(mod => {
-      const li = document.createElement('li'); // List item for styling
       const button = document.createElement('button');
-      button.className = 'mod-button';
-      button.textContent = `${mod.name}`;
-      
-      // Event listener for downloading the mod
-      button.onclick = () => {
-        const a = document.createElement('a'); // Create a hidden anchor tag
-        a.href = mod.url;
-        a.download = mod.name; // Suggest a filename for the download
-        document.body.appendChild(a);
-        a.click(); // Trigger the download
-        document.body.removeChild(a); // Remove the anchor tag
+      button.textContent = `Download ${mod.name}`;
+      button.onclick = async () => {
+        try {
+          const response = await fetch(
+            `https://api.github.com/repos/Xtys/styxdb/contents/${mod.path}`,
+            {
+              headers: {
+                Authorization: `token ${token}`,
+              },
+            }
+          );
+    
+          if (response.ok) {
+            const data = await response.json();
+            const a = document.createElement('a');
+            a.href = data.download_url;
+            a.download = mod.name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          } else {
+            console.error('Error:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error fetching file:', error);
+        }
       };
-      
-      li.appendChild(button);
-      modContainer.appendChild(li);
+      modContainer.appendChild(button);
     });
+
   </script>
 </body>
 </html>
