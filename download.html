@@ -49,6 +49,7 @@
 
     /* Individual mod button styles */
     .mod-button {
+      position: relative;
       padding: 10px 20px;
       background-color: #6a4bff;
       border: none;
@@ -62,6 +63,21 @@
     .mod-button:hover {
       background-color: #5a3ae6;
       transform: scale(1.05);
+    }
+
+    /* Change text on hover using CSS */
+    .mod-button:hover::after {
+      content: attr(data-hover);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      color: #ffffff;
+    }
+
+    .mod-button:hover span {
+      visibility: hidden;
     }
 
     /* Donation button container */
@@ -96,13 +112,13 @@
 
   <script>
     const modData = [
-      { name: 'Ako Tamaki v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
-      { name: 'Kurisu Makise v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
-      { name: 'Misaka Mikoto v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
-      { name: 'Nagisa Shiota v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa%20Shiota%20v1.1.zip' },
-      { name: 'C.C v1.1', url: 'http://styxmod.infinityfreeapp.com/C.C.%20v1.1.zip' },
-      { name: 'Nezuko v2.0', url: 'http://styxmod.infinityfreeapp.com/Nezuko%20v2.0.zip' },
-      { name: 'Sesshōin Kiara v1.3', url: 'https://icedrive.net/s/bYfgSFNPGb7DZkhDWANaRZDuv2Qi' }
+      { name: 'Ako Tamaki v2.3', chineseName: '玉置 亜子 v2.3', url: 'http://styxmod.infinityfreeapp.com/Ako%20Tamaki%20v2.3.zip' },
+      { name: 'Kurisu Makise v1.3', chineseName: '牧瀬 紅莉栖 v1.3', url: 'http://styxmod.infinityfreeapp.com/Kurisu%20Makise%20v1.3.zip' },
+      { name: 'Misaka Mikoto v2.3', chineseName: '御坂 美琴 v2.3', url: 'http://styxmod.infinityfreeapp.com/Misaka%20Mikoto%20v2.3.zip' },
+      { name: 'Nagisa Shiota v1.1', chineseName: '潮田 渚 v1.1', url: 'http://styxmod.infinityfreeapp.com/Nagisa%20Shiota%20v1.1.zip' },
+      { name: 'C.C v1.1', chineseName: 'シー・ツー v1.1', url: 'http://styxmod.infinityfreeapp.com/C.C.%20v1.1.zip' },
+      { name: 'Nezuko v2.0', chineseName: '禰豆子 v2.0', url: 'http://styxmod.infinityfreeapp.com/Nezuko%20v2.0.zip' },
+      { name: 'Sesshōin Kiara v1.3', chineseName: '殺生院キアラ v1.3', url: 'https://icedrive.net/s/bYfgSFNPGb7DZkhDWANaRZDuv2Qi' }
     ];
 
     const modContainer = document.getElementById('mod-container');
@@ -112,7 +128,8 @@
       const li = document.createElement('li'); // List item for styling
       const button = document.createElement('button');
       button.className = 'mod-button';
-      button.textContent = `${mod.name}`;
+      button.setAttribute('data-hover', mod.chineseName);
+      button.innerHTML = `<span>${mod.name}</span>`;
       
       // Event listener for downloading the mod
       button.onclick = () => {
@@ -127,8 +144,6 @@
       li.appendChild(button);
       modContainer.appendChild(li);
     });
-    
-
   </script>
 </body>
 </html>
