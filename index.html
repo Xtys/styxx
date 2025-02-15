@@ -314,14 +314,13 @@
           <a href="https://x.com/codedan0/status/1890567971157786670" target="_blank">
               <img src="pic/eu.png" alt="eu" style="width:100%; height:auto;">
           </a>
-          <a href="#" class="mod-download" onclick="downloadFile('https://styxmod.infinityfreeapp.com/Eucliwood%20Hellscythe%20v3.1.1.zip', 'Eucliwood_Hellscythe_v3.1.1.zip')">
+            <!-- Download Link -->
+          <a href="#" class="mod-download" onclick="forceDownload(event, 'https://styxmod.infinityfreeapp.com/Eucliwood%20Hellscythe%20v3.1.1.zip', 'Eucliwood_Hellscythe_v3.1.1.zip')">
               <span class="english">Eucliwood</span>
               <span class="chinese">ユー</span>
           </a>
       </div>
 
-
-            
     </ul>
         </div>
       </div>
@@ -349,12 +348,9 @@
             color: grey;
             text-decoration: none;
             font-size: 13px;
-            font-weight: bold;
             margin-top: 5px;
         }
-        .mod-download:hover {
-            color: white;
-        }
+        
       </style>
       
     </section>
@@ -1265,21 +1261,24 @@
         }
     }
 </script>
+
   <script>
-    function downloadFile(url, filename) {
+    function forceDownload(event, url, filename) {
+        event.preventDefault(); // Prevent default link behavior
+    
         fetch(url)
             .then(response => response.blob())
             .then(blob => {
-                let link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
                 link.download = filename;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
             })
-            .catch(error => console.error('Download error:', error));
+            .catch(error => console.error("Download failed:", error));
     }
-  </script>
+    </script>
 
 
 </body>
