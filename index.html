@@ -299,18 +299,8 @@
                 </a>
            </div>
             
-             
-<!--             <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden; text-align:center;">
-              <a class="card-image" href="https://styxmod.infinityfreeapp.com/Eucliwood%20Hellscythe%20v3.1.1.zip"  download="Eucliwood_Hellscythe_v3.1.1.zip" style="text-decoration:none;">
-                  <img src="pic/eu.png" alt="eu" style="width:100%; height:auto;">
-                  <div class="titleText" style="font-size:13px; color:grey; padding-top:5px;">
-                      <span class="english">Eucliwood</span>
-                      <span class="chinese">ユー</span>
-                  </div>
-              </a>
-          </div> -->
 
-          <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden; text-align:center;">
+<!--           <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden; text-align:center;">
               <a class="card-image" href="https://styxmod.infinityfreeapp.com/Eucliwood%20Hellscythe%20v3.1.1.zip" download="Eucliwood_Hellscythe_v3.1.1.zip" style="text-decoration:none;">
                   <img src="pic/eu.png" alt="eu" style="width:100%; height:auto;">
                   <div class="titleText">
@@ -318,28 +308,55 @@
                       <span class="chinese">ユー</span>
                   </div>
               </a>
-          </div>
-           
+          </div> -->
+
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb" style="width:158px;height:158px;overflow:hidden; text-align:center;">
+          <a href="https://x.com/codedan0/status/1890567971157786670" target="_blank">
+              <img src="pic/eu.png" alt="eu" style="width:100%; height:auto;">
+          </a>
+          <a href="#" class="mod-download" onclick="downloadFile('https://styxmod.infinityfreeapp.com/Eucliwood%20Hellscythe%20v3.1.1.zip', 'Eucliwood_Hellscythe_v3.1.1.zip')">
+              <span class="english">Eucliwood</span>
+              <span class="chinese">ユー</span>
+          </a>
+      </div>
+
+
+            
     </ul>
         </div>
       </div>
     </div>
+      
       <style>
         .titleText {
             font-size: 13px; 
             color: grey; 
             padding-top: 5px;
+            cursor: pointer;
         }
         .chinese {
-            display: none; /* Hide Chinese by default */
+            display: none;
         }
         .thumb:hover .english {
-            display: none; /* Hide English when hovering */
+            display: none;
         }
         .thumb:hover .chinese {
-            display: inline; /* Show Chinese when hovering */
+            display: inline;
+        }
+      
+        .mod-download {
+            display: block;
+            color: grey;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .mod-download:hover {
+            color: white;
         }
       </style>
+      
     </section>
         
            <!-- 4 -->
@@ -1248,7 +1265,21 @@
         }
     }
 </script>
-
+  <script>
+    function downloadFile(url, filename) {
+        fetch(url)
+            .then(response => response.blob())
+            .then(blob => {
+                let link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch(error => console.error('Download error:', error));
+    }
+  </script>
 
 
 </body>
