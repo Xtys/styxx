@@ -306,13 +306,17 @@
           </a>
             <!-- Download Link -->
           <a href="#" class="mod-download" onclick="forceDownload(event, 'https://styxmod.infinityfreeapp.com/Eucliwood%20Hellscythe%20v3.1.1.zip', 'Eucliwood_Hellscythe_v3.1.1.zip')">
-<!--               <span class="english">Eucliwood</span>
-              <span class="chinese">ユー</span> -->
-             <button style="background-color: #aea1b2; color: #AAA; border: none; padding: 2px 2px; font-size: 13px;  cursor: pointer; border-radius: 2px; text-align: center;">
+
+<!--              <button style="background-color: #a1b2ae; color: #b2a1a5; border: none; padding: 2px 2px; font-size: 13px;  cursor: pointer; border-radius: 2px; text-align: center;">
                   <span class="english">Eucliwood</span>
                   <span class="chinese">ユー</span>
               </button>
-
+             -->
+            <button class="mod-button">
+                  <span class="english">Eucliwood</span>
+                  <span class="chinese">ユー</span>
+            </button>
+            
           </a>
       </div>
               
@@ -346,7 +350,43 @@
             font-size: 13px;
             margin-top: 5px;
         }
-        
+        .mod-button {
+            position: relative;
+            padding: 10px 20px;
+            background-color: #6a4bff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #ffffff; /* White text */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center; /* Ensure text is centered */
+            width: 200px; /* Set a fixed width to prevent button from resizing */
+          }
+          
+          /* On hover, change background color and scale the button */
+          .mod-button:hover {
+            background-color: #5a3ae6;
+            transform: scale(1.05);
+          }
+          
+          /* Default text inside the button */
+          .mod-button span {
+            display: inline-block;
+          }
+          
+          /* Change text on hover using CSS */
+          .mod-button:hover::after {
+            content: attr(data-hover); /* Use the data-hover attribute for hover text */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            color: #ffffff;
+            font-size: 16px;
+            display: inline-block;
+          }
       </style>
       
     </section>
