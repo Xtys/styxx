@@ -1267,53 +1267,6 @@
   <!-- Template Custom Javascript File -->
   <script src="js/custom.js"></script>
   
-<!--   <script>
-  function toggleCard(card) {
-    const expandedCard = document.querySelector('.mod-card.expanded');
-    // Collapse the currently expanded card if any
-    if (expandedCard && expandedCard !== card) {
-      expandedCard.classList.remove('expanded');
-    }
-    // Toggle the selected card
-    card.classList.toggle('expanded');
-  }
-</script>
-
-<script>
-    function showImage(event, imageUrl) {
-        event.preventDefault(); // Prevent default action to avoid immediate page refresh
-        window.open(event.currentTarget.href, '_blank'); // Open the link in a new tab
-
-        const previewContainer = event.currentTarget.parentElement.querySelector('.preview-container');
-        
-        // Check if the preview image is already displayed
-        if (!previewContainer.querySelector('img')) {
-            // Create a new image element
-            const img = document.createElement('img');
-            img.src = imageUrl;
-            img.alt = "Preview Image";
-            img.style.width = "100%";
-            img.style.marginTop = "10px";
-
-            // Add the image to the preview container
-            previewContainer.appendChild(img);
-        }
-    }
-</script>
-
-  <script>
-    function forceDownload(event, url, filename) {
-        event.preventDefault(); // Prevent default link behavior
-    
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", filename);
-        link.setAttribute("target", "_blank"); // Open in a new tab if necessary
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-    </script> -->
 
 
 </body>
